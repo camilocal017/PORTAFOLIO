@@ -105,7 +105,7 @@
           <div class="hstat-l">Años cod.</div>
         </div>
         <div class="hstat">
-          <div class="hstat-n" data-count="6">0</div>
+          <div class="hstat-n" data-count="1">0</div>
           <div class="hstat-l">Proyectos</div>
         </div>
         <div class="hstat">
@@ -325,14 +325,56 @@ Si buscas a alguien que entregue soluciones claras, bien estructuradas y listas 
         <p class="sec-eyebrow reveal">03 — Portafolio</p>
         <h2 class="sec-title reveal d1">Proyectos<br><em>seleccionados</em></h2>
       </div>
-      <a href="https://github.com/camilocalderon" class="btn-ghost reveal d2" target="_blank" rel="noopener">
+      <a href="https://github.com/camilocal017" class="btn-ghost reveal d2" target="_blank" rel="noopener">
         Ver GitHub →
       </a>
     </div>
 
     <div class="projects-grid">
 
-      <!-- PROYECTO 01 -->
+      <!-- PROYECTO 01 · RETAILFLOW -->
+      <div class="proj-card reveal">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm"># reportes/pl.py — FastAPI</span>
+<span class="ck">@router.get</span>(<span class="cs">"/reportes/pl"</span>)
+<span class="ck">def</span> profit_loss(db=Depends(get_db)):
+  ingresos = sum_ingresos(db)
+  cogs     = sum_cogs(db)
+  gastos   = sum_gastos(db)
+  <span class="ck">return</span> {
+    <span class="cs">"utilidad"</span>: ingresos - cogs - gastos,
+    <span class="cs">"margen"</span>: (ingresos - cogs) / ingresos
+  }</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocal017/retailflow" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-freelance">En producción</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">01</div>
+          <div class="proj-title">RetailFlow — Sistema de Gestión Retail</div>
+          <div class="proj-desc">
+            Sistema full stack para tienda de streetwear. Dashboard con KPIs en tiempo real,
+            registro de ventas con control de stock automático, P&amp;L financiero,
+            exportación de reportes y autenticación por roles. 24 tests automatizados. Desplegado en Vercel.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">FastAPI</span>
+            <span class="stag project">React</span>
+            <span class="stag project">PostgreSQL</span>
+            <span class="stag project">Tailwind</span>
+            <span class="stag project">pytest</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocal017/retailflow" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+            <a href="#" class="proj-link secondary">Demo →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 02 -->
       <div class="proj-card reveal">
         <div class="proj-card-top">
           <div class="proj-mockup">
@@ -751,7 +793,6 @@ top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pr
 
       <div class="social-list">
         <a href="https://github.com/camilocalderon"      class="social-link" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/camilocalderon" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
         <a href="assets/cv-camilo-calderon.pdf"           class="social-link" download>Descargar CV</a>
       </div>
     </div>
@@ -763,7 +804,7 @@ top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pr
   <footer>
     <p>© 2026 <span>Camilo A. Calderón Salazar</span></p>
     <p>Bogotá, Colombia · <span>Open to remote</span></p>
-    <p>Diseñado &amp; construido por <span>mí</span></p>
+    <p>Tu crecimiento a un solo <span>clic</span></p>
   </footer>
 
 
