@@ -1,0 +1,119 @@
+/*
+ * ============================================================
+ *  base.css
+ *  Reset, estilos globales y tipografía base
+ *
+ *  ¿Qué hace este archivo?
+ *  - Elimina márgenes y paddings por defecto del navegador
+ *  - Define el comportamiento del body y el scroll
+ *  - Establece la tipografía global
+ *  - Clases de utilidad que se usan en todo el sitio
+ * ============================================================
+ */
+
+/* ── RESET UNIVERSAL ────────────────────────────────────────
+   Elimina diferencias entre navegadores
+──────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* El padding no agranda el elemento */
+}
+
+/* ── HTML ───────────────────────────────────────────────────*/
+html {
+  font-size: 16px;         /* Base para unidades rem              */
+  scroll-behavior: smooth; /* Scroll animado al hacer click en nav */
+}
+
+/* ── BODY ───────────────────────────────────────────────────*/
+body {
+  background-color: var(--color-bg);
+  color:            var(--color-text);
+  font-family:      var(--font-sans);
+  cursor:           none;          /* Ocultamos el cursor nativo        */
+  overflow-x:       hidden;        /* Evita scroll horizontal           */
+  -webkit-font-smoothing:  antialiased;   /* Texto más nítido en Mac   */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── LINKS ──────────────────────────────────────────────────*/
+a {
+  color:           inherit;        /* Hereda color del padre            */
+  text-decoration: none;
+  cursor:          none;           /* Usamos cursor personalizado       */
+}
+
+/* ── IMÁGENES ───────────────────────────────────────────────*/
+img {
+  display:   block;
+  max-width: 100%;
+  height:    auto;
+}
+
+/* ── BOTONES ────────────────────────────────────────────────*/
+button {
+  cursor:      none;
+  font-family: var(--font-sans);
+  background:  none;
+  border:      none;
+}
+
+/* ── SECCIONES COMUNES ──────────────────────────────────────
+   Padding y borde superior compartido entre secciones
+──────────────────────────────────────────────────────────── */
+.section {
+  padding:    var(--space-3xl) var(--space-xl);
+  border-top: 1px solid var(--color-line);
+}
+
+/* ── EYEBROW (etiqueta sobre el título) ─────────────────────
+   Ejemplo: "01 — Sobre mí"
+──────────────────────────────────────────────────────────── */
+.sec-eyebrow {
+  font-family:     var(--font-mono);
+  font-size:       11px;
+  color:           var(--color-amber);
+  letter-spacing:  3px;
+  text-transform:  uppercase;
+  margin-bottom:   16px;
+  display:         flex;
+  align-items:     center;
+  gap:             12px;
+}
+
+/* Prefijo "//" decorativo */
+.sec-eyebrow::before {
+  content:  '//';
+  opacity:  0.4;
+}
+
+/* ── TÍTULO DE SECCIÓN ──────────────────────────────────────*/
+.sec-title {
+  font-size:      clamp(34px, 4vw, 56px); /* Fluido: mínimo 34, máximo 56 */
+  font-weight:    800;
+  letter-spacing: -2px;
+  line-height:    1;
+  margin-bottom:  60px;
+}
+
+/* Palabra destacada en ámbar dentro del título */
+.sec-title em {
+  color:      var(--color-amber);
+  font-style: normal;
+}
+
+/* ── UTILIDADES DE TEXTO ────────────────────────────────────*/
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.text-amber {
+  color: var(--color-amber);
+}

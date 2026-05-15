@@ -1,0 +1,33 @@
+/*
+ * ============================================================
+ *  animations.css
+ *  Animaciones de entrada al scroll (reveal)
+ *
+ *  ¿Cómo funciona?
+ *  1. Los elementos HTML tienen la clase .reveal
+ *  2. Empieza invisible y desplazado hacia abajo
+ *  3. js/animations.js detecta cuando entran al viewport
+ *  4. Añade la clase .in → el elemento aparece suavemente
+ *
+ *  Clases de delay opcionales: .d1 .d2 .d3 .d4
+ * ============================================================
+ */
+
+/* Estado inicial: oculto y desplazado */
+.reveal {
+  opacity:    0;
+  transform:  translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Estado final: visible en su posición */
+.reveal.in {
+  opacity:   1;
+  transform: none;
+}
+
+/* Delays escalonados para grupos de elementos */
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }

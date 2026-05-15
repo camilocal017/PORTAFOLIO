@@ -1,0 +1,72 @@
+/*
+ * ============================================================
+ *  variables.css
+ *  Tokens de diseño — colores, fuentes y espaciado
+ *
+ *  ¿Qué es esto?
+ *  Todas las variables globales del sitio viven aquí.
+ *  Si quieres cambiar un color, lo cambias UNA sola vez
+ *  en este archivo y se actualiza en todo el sitio.
+ *
+ *  Uso: var(--nombre-variable)
+ * ============================================================
+ */
+
+:root {
+
+  /* ── PALETA PRINCIPAL ──────────────────────────────────────
+     Fondo base: tres niveles de oscuridad para crear profundidad
+  ──────────────────────────────────────────────────────────── */
+  --color-bg:         #141210;   /* Fondo principal — negro cálido       */
+  --color-bg-2:       #1c1916;   /* Fondo de cards y secciones           */
+  --color-bg-3:       #232018;   /* Fondo hover de cards                 */
+  --color-bg-4:       #2a261f;   /* Fondo más claro para contraste       */
+
+  /* ── ACENTO: ÁMBAR / ORO ───────────────────────────────────
+     Color principal de marca — botones, highlights, links
+  ──────────────────────────────────────────────────────────── */
+  --color-amber:      #e8a230;   /* Ámbar principal                      */
+  --color-amber-dark: #c4821a;   /* Ámbar oscuro — hover, degradados     */
+  --color-amber-lite: #f5c460;   /* Ámbar claro — destellos              */
+
+  /* ── TEXTO ─────────────────────────────────────────────────
+     Niveles de opacidad para jerarquía visual
+  ──────────────────────────────────────────────────────────── */
+  --color-text:       #f0e8d8;   /* Texto principal — crema cálido       */
+  --color-text-2:     #c8baa8;   /* Texto secundario — subtítulos        */
+  --color-muted:      #6b5e4a;   /* Texto apagado — etiquetas, meta      */
+  --color-muted-2:    #4a3f30;   /* Texto muy apagado — decorativo       */
+
+  /* ── BORDES ────────────────────────────────────────────────
+     Líneas sutiles sobre fondo oscuro
+  ──────────────────────────────────────────────────────────── */
+  --color-line:       rgba(232, 162, 48, 0.10);  /* Línea ámbar suave    */
+  --color-line-2:     rgba(240, 232, 216, 0.07); /* Línea blanca suave   */
+
+  /* ── TIPOGRAFÍA ────────────────────────────────────────────
+     Space Mono  → código, etiquetas, elementos técnicos
+     Syne        → títulos grandes y texto de cuerpo
+  ──────────────────────────────────────────────────────────── */
+  --font-mono:  'Space Mono', monospace;
+  --font-sans:  'Syne', sans-serif;
+
+  /* ── ESPACIADO BASE ────────────────────────────────────────
+     Sistema de 8px — múltiplos consistentes
+  ──────────────────────────────────────────────────────────── */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   40px;
+  --space-xl:   56px;
+  --space-2xl:  80px;
+  --space-3xl:  100px;
+
+  /* ── SOMBRAS ───────────────────────────────────────────────*/
+  --shadow-card:   0 24px 64px rgba(0, 0, 0, 0.5);
+  --shadow-amber:  0 8px 32px rgba(232, 162, 48, 0.3);
+
+  /* ── TRANSICIONES ──────────────────────────────────────────*/
+  --transition-fast:   0.15s ease;
+  --transition-base:   0.25s ease;
+  --transition-slow:   0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}

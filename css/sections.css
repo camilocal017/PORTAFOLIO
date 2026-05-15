@@ -1,0 +1,1017 @@
+/*
+ * ============================================================
+ *  sections.css
+ *  Estilos de cada sección del portafolio
+ *
+ *  Contenido:
+ *  1.  Hero
+ *  2.  About
+ *  3.  Skills
+ *  4.  Projects
+ *  5.  Experience
+ *  6.  Contact
+ *  7.  Footer
+ * ============================================================
+ */
+
+
+/* ============================================================
+   1. HERO — Primera pantalla
+   ============================================================ */
+
+#hero {
+  min-height:  100vh;            /* Ocupa toda la pantalla              */
+  display:     flex;
+  align-items: center;
+  padding:     0 var(--space-xl);
+  padding-top: 110px;            /* Espacio para la nav fija            */
+  position:    relative;
+  overflow:    hidden;
+}
+
+/* Grid de líneas en el fondo — solo decorativo */
+.hero-bg-grid {
+  position:         absolute;
+  inset:            0;
+  pointer-events:   none;
+  background-image:
+    linear-gradient(rgba(232, 162, 48, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 162, 48, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  /* Fade hacia los bordes */
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* Destello ámbar difuso a la derecha */
+.hero-glow {
+  position:         absolute;
+  top:              20%;
+  right:            5%;
+  width:            500px;
+  height:           500px;
+  border-radius:    50%;
+  background:       radial-gradient(circle, rgba(232, 162, 48, 0.06) 0%, transparent 65%);
+  pointer-events:   none;
+}
+
+/* Contenido del hero — sobre los fondos decorativos */
+.hero-content {
+  max-width: 820px;
+  position:  relative;
+  z-index:   1;
+}
+
+/* Badge "Disponible para trabajo" */
+.hero-badge {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            10px;
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-amber);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border:         1px solid rgba(232, 162, 48, 0.2);
+  padding:        7px 16px;
+  margin-bottom:  40px;
+}
+
+/* Punto verde pulsante dentro del badge */
+.badge-dot {
+  width:         6px;
+  height:        6px;
+  border-radius: 50%;
+  background:    var(--color-amber);
+  animation:     pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);   }
+  50%      { opacity: 0.3; transform: scale(1.8); }
+}
+
+/* Nombre grande */
+.hero-name {
+  font-size:      clamp(52px, 6vw, 84px); /* Más compacto — no se estira */
+  font-weight:    800;
+  line-height:    0.93;
+  letter-spacing: -1px;                   /* Ligero ajuste, sin estirar  */
+  margin-bottom:  8px;
+}
+
+/* "Camilo" — texto sólido */
+.hero-name .n1 {
+  color:   var(--color-text);
+  display: block;
+}
+
+/* "Calderón" — solo borde ámbar, sin relleno */
+.hero-name .n2 {
+  display:              block;
+  color:                transparent;
+  -webkit-text-stroke:  1.5px var(--color-amber);
+}
+
+/* Rol con efecto typed — controlado en js/typed.js */
+.hero-role {
+  font-family:    var(--font-mono);
+  font-size:      14px;
+  color:          var(--color-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin:         28px 0 20px;
+  min-height:     24px;          /* Evita salto al cambiar el texto     */
+}
+
+/* Cursor parpadeante del efecto typed */
+.typed-cursor {
+  color:     var(--color-amber);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Descripción corta del héroe */
+.hero-desc {
+  font-size:     17px;
+  color:         rgba(240, 232, 216, 0.55);
+  line-height:   1.8;
+  max-width:     520px;
+  margin-bottom: 44px;
+}
+
+.hero-desc strong {
+  color:       var(--color-text-2);
+  font-weight: 500;
+}
+
+/* Contenedor de botones CTA */
+.hero-actions {
+  display:       flex;
+  gap:           14px;
+  flex-wrap:     wrap;
+  margin-bottom: 72px;
+}
+
+/* Estadísticas numéricas */
+.hero-stats {
+  display:     flex;
+  gap:         0;
+  border-top:  1px solid var(--color-line);
+  padding-top: 40px;
+}
+
+.hstat {
+  padding-right: 40px;
+}
+
+.hstat + .hstat {
+  border-left:  1px solid var(--color-line);
+  padding-left: 40px;
+}
+
+/* Número grande — animado por js/counters.js */
+.hstat-n {
+  font-size:            40px;
+  font-weight:          800;
+  color:                var(--color-amber);
+  line-height:          1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Etiqueta debajo del número */
+.hstat-l {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top:     6px;
+}
+
+/* Scroll hint desactivado — se superpone con las stats en pantallas medianas */
+.scroll-hint { display: none; }
+
+
+/* ============================================================
+   2. ABOUT — Sobre mí
+   ============================================================ */
+
+#about .about-grid {
+  display:     grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap:         80px;
+  align-items: start;
+}
+
+/* Columna izquierda: marco de la foto */
+.about-photo-wrap {
+  position: relative;
+}
+
+.about-photo-frame {
+  aspect-ratio: 3 / 4;          /* Proporción retrato                  */
+  background:   var(--color-bg-3);
+  border:       1px solid var(--color-line);
+  display:      flex;
+  align-items:  center;
+  justify-content: center;
+  position:     relative;
+  overflow:     hidden;
+}
+
+/* Sombra decorativa detrás del marco */
+.about-photo-frame::before {
+  content:         '';
+  position:        absolute;
+  top:             12px;
+  left:            12px;
+  right:           -12px;
+  bottom:          -12px;
+  border:          1px solid rgba(232, 162, 48, 0.15);
+  pointer-events:  none;
+  z-index:         0;
+}
+
+/* Placeholder mientras no hay foto */
+.about-photo-placeholder {
+  font-family:    var(--font-mono);
+  font-size:      12px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  text-align:     center;
+  padding:        24px;
+  position:       relative;
+  z-index:        1;
+}
+
+.about-photo-placeholder span {
+  display:       block;
+  font-size:     48px;
+  margin-bottom: 16px;
+  opacity:       0.3;
+}
+
+.about-photo-placeholder small {
+  color:          var(--color-muted-2);
+  font-size:      10px;
+  letter-spacing: 1px;
+}
+
+/* La foto real cuando se agregue */
+.about-photo-frame img {
+  width:    100%;
+  height:   100%;
+  object-fit: cover;
+  position: absolute;
+  inset:    0;
+}
+
+/* Tag "Bogotá, CO" sobre la foto */
+.about-tag {
+  position:       absolute;
+  bottom:         -16px;
+  right:          -16px;
+  background:     var(--color-amber);
+  color:          var(--color-bg);
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  font-weight:    700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding:        12px 20px;
+}
+
+/* Columna derecha: texto */
+.about-text p {
+  font-size:     17px;
+  color:         var(--color-text-2);
+  line-height:   1.85;
+  margin-bottom: 24px;
+  font-weight:   300;
+}
+
+.about-text p strong {
+  color:       var(--color-text);
+  font-weight: 600;
+}
+
+.about-text p:last-of-type {
+  margin-bottom: 48px;
+}
+
+/* Grid 2x2 de datos rápidos */
+.about-facts {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   0;
+  border:                1px solid var(--color-line);
+  margin-bottom:         40px;
+}
+
+.fact {
+  padding:       20px 24px;
+  border-right:  1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* Última columna sin borde derecho */
+.fact:nth-child(even)  { border-right: none; }
+/* Última fila sin borde inferior */
+.fact:nth-last-child(-n+2) { border-bottom: none; }
+
+.fact-label {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom:  6px;
+}
+
+.fact-value {
+  font-size:   14px;
+  color:       var(--color-text-2);
+  font-weight: 500;
+}
+
+/* Botones del about */
+.about-links {
+  display:   flex;
+  gap:       12px;
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   3. SKILLS — Stack técnico
+   ============================================================ */
+
+/* Grid de 4 cards */
+.skills-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:                   16px;         /* Espacio entre cards               */
+  align-items:           start;        /* Cada card mide lo que necesita    */
+}
+
+/* Card individual */
+.skill-card {
+  background:     var(--color-bg-2);
+  border:         1px solid var(--color-line);
+  padding:        36px 32px;
+  position:       relative;
+  overflow:       visible;             /* Permite que los tags se vean      */
+  display:        flex;
+  flex-direction: column;
+  transition:     background var(--transition-base),
+                  border-color var(--transition-base),
+                  transform var(--transition-fast);
+}
+
+/* Línea ámbar vertical que crece al hacer hover */
+.skill-card::before {
+  content:          '';
+  position:         absolute;
+  top:              0;
+  left:             0;
+  width:            3px;
+  height:           0;
+  background:       var(--color-amber);
+  transition:       height var(--transition-slow);
+}
+
+.skill-card:hover::before  { height: 100%; }
+
+.skill-card:hover {
+  background:   var(--color-bg-3);
+  border-color: rgba(232, 162, 48, 0.22);
+  transform:    translateY(-2px);
+}
+
+/* Ícono simbólico de la card */
+.skill-card-icon {
+  font-family:   var(--font-mono);
+  font-size:     24px;
+  color:         var(--color-amber);
+  opacity:       0.7;
+  margin-bottom: 20px;
+  font-weight:   700;
+}
+
+.skill-card-name {
+  font-size:     18px;
+  font-weight:   700;
+  margin-bottom: 10px;
+}
+
+.skill-card-desc {
+  font-size:     13px;
+  color:         var(--color-muted);
+  line-height:   1.7;
+  margin-bottom: 24px;
+  font-weight:   400;
+}
+
+/* Contenedor de tags — flex con wrap */
+.skill-tags {
+  display:   flex;
+  flex-wrap: wrap;       /* Los tags pasan a la siguiente línea si no caben */
+  gap:       8px;        /* Espacio entre tags                               */
+  margin-top: auto;      /* Los empuja al fondo de la card                  */
+}
+
+/* ── BARRAS DE NIVEL ──────────────────────────────────────── */
+.bars {
+  margin-top: 80px;
+}
+
+.bars-title {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-amber);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom:  32px;
+}
+
+.bars-title::before {
+  content:  '// ';
+  opacity:  0.4;
+}
+
+/* Fila de barra: nombre + pista + porcentaje */
+.bar-row {
+  display:               grid;
+  grid-template-columns: 180px 1fr 40px;
+  align-items:           center;
+  gap:                   24px;
+  padding:               18px 0;
+  border-bottom:         1px solid var(--color-line-2);
+}
+
+.bar-row:first-of-type {
+  border-top: 1px solid var(--color-line-2);
+}
+
+.bar-name {
+  font-size:   13px;
+  font-weight: 500;
+  color:       var(--color-text-2);
+}
+
+/* Pista de la barra — fondo gris muy sutil */
+.bar-track {
+  height:   1px;
+  background: var(--color-line-2);
+  position: relative;
+}
+
+/* Relleno de la barra — animado por js/animations.js */
+.bar-fill {
+  position:         absolute;
+  top:              0;
+  left:             0;
+  height:           1px;
+  background:       linear-gradient(to right, var(--color-amber-dark), var(--color-amber));
+  transform:        scaleX(0);      /* Empieza invisible                 */
+  transform-origin: left;
+  transition:       transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* La clase .animated se añade desde js/animations.js */
+.bar-fill.animated {
+  transform: scaleX(1);
+}
+
+.bar-pct {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-muted);
+  text-align:     right;
+  letter-spacing: 1px;
+}
+
+
+/* ============================================================
+   4. PROJECTS — Portafolio
+   ============================================================ */
+
+/* Header con título y link a GitHub */
+.proj-header {
+  display:         flex;
+  align-items:     flex-end;
+  justify-content: space-between;
+  margin-bottom:   48px;
+}
+
+.proj-header .sec-title {
+  margin-bottom: 0;
+}
+
+/* Grid de cards de proyecto */
+.projects-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap:                   2px;
+}
+
+/* Card de proyecto */
+.proj-card {
+  background:     var(--color-bg-2);
+  border:         1px solid var(--color-line);
+  position:       relative;
+  overflow:       hidden;
+  transition:     border-color var(--transition-base),
+                  transform 0.3s ease;
+  display:        flex;
+  flex-direction: column;
+}
+
+.proj-card:hover {
+  border-color: rgba(232, 162, 48, 0.3);
+  transform:    translateY(-4px);
+}
+
+/* Parte superior: mockup de código */
+.proj-card-top {
+  height:          200px;
+  background:      var(--color-bg-3);
+  position:        relative;
+  overflow:        hidden;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+}
+
+/* Imagen de screenshot (opcional) */
+.proj-card-top img {
+  width:      100%;
+  height:     100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  position:   absolute;
+  inset:      0;
+}
+
+.proj-card:hover .proj-card-top img {
+  transform: scale(1.05);
+}
+
+/* Contenedor del mockup de código */
+.proj-mockup {
+  width:           100%;
+  height:          100%;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  position:        relative;
+}
+
+/* Bloque de código simulado */
+.proj-mockup-code {
+  font-family:     var(--font-mono);
+  font-size:       10px;
+  color:           rgba(232, 162, 48, 0.25);
+  line-height:     1.8;
+  text-align:      left;
+  padding:         20px;
+  pointer-events:  none;
+  user-select:     none;
+  white-space:     pre;
+}
+
+/* Colores del syntax highlighting del mockup */
+.proj-mockup-code .cm { color: rgba(107, 94,  74,  0.6); } /* comentario */
+.proj-mockup-code .ck { color: rgba(232, 162, 48,  0.35); } /* keyword    */
+.proj-mockup-code .cs { color: rgba(196, 130, 26,  0.4); }  /* string     */
+
+/* Overlay que aparece al hacer hover con botón "Ver código" */
+.proj-overlay {
+  position:        absolute;
+  inset:           0;
+  background:      rgba(20, 18, 16, 0.6);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  opacity:         0;
+  transition:      opacity var(--transition-base);
+}
+
+.proj-card:hover .proj-overlay {
+  opacity: 1;
+}
+
+.proj-overlay-btn {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-bg);
+  background:     var(--color-amber);
+  padding:        10px 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight:    700;
+  transition:     transform var(--transition-fast);
+}
+
+.proj-overlay-btn:hover {
+  transform: scale(1.03);
+}
+
+/* Cuerpo de la card: título, descripción, stack, links */
+.proj-card-body {
+  padding:        28px 28px 32px;
+  flex:           1;
+  display:        flex;
+  flex-direction: column;
+}
+
+.proj-num {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  margin-bottom:  12px;
+}
+
+.proj-title {
+  font-size:     20px;
+  font-weight:   700;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.proj-desc {
+  font-size:     13px;
+  color:         rgba(240, 232, 216, 0.5);
+  line-height:   1.75;
+  margin-bottom: 20px;
+  flex:          1;            /* Empuja los links hacia abajo        */
+}
+
+.proj-stack {
+  display:       flex;
+  flex-wrap:     wrap;
+  gap:           7px;
+  margin-bottom: 24px;
+}
+
+/* Links al final de la card */
+.proj-links {
+  display:     flex;
+  gap:         14px;
+  align-items: center;
+}
+
+.proj-link {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-amber);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display:        inline-flex;
+  align-items:    center;
+  gap:            7px;
+  transition:     gap var(--transition-base), opacity var(--transition-base);
+  opacity:        0.9;
+}
+
+.proj-link:hover {
+  gap:     12px;
+  opacity: 1;
+}
+
+/* Variante secundaria: "Docs API", "Demo" */
+.proj-link.secondary {
+  color: var(--color-muted);
+}
+
+.proj-link.secondary:hover {
+  color: var(--color-text-2);
+}
+
+
+/* ============================================================
+   5. EXPERIENCE — Trayectoria
+   ============================================================ */
+
+/* Layout de dos columnas: timeline + educación */
+.exp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap:     80px;
+}
+
+/* ── TIMELINE ─────────────────────────────────────────────── */
+.exp-timeline-label {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-amber);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom:  32px;
+  opacity:        0.7;
+}
+
+.exp-item {
+  display:        grid;
+  grid-template-columns: 16px 1fr;
+  gap:            24px;
+  padding-bottom: 48px;
+}
+
+.exp-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Columna del indicador visual (punto + línea) */
+.exp-line-wrap {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+}
+
+/* Punto del timeline */
+.exp-dot {
+  width:         10px;
+  height:        10px;
+  border-radius: 50%;
+  background:    var(--color-bg-2);
+  border:        1.5px solid var(--color-amber);
+  flex-shrink:   0;
+  margin-top:    5px;
+  position:      relative;
+  z-index:       1;
+  transition:    background var(--transition-base);
+}
+
+/* Punto activo o hover: se rellena */
+.exp-item.active .exp-dot,
+.exp-item:hover  .exp-dot {
+  background: var(--color-amber);
+}
+
+/* Línea vertical entre puntos */
+.exp-vert {
+  flex:       1;
+  width:      1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(232, 162, 48, 0.3),
+    rgba(232, 162, 48, 0.05)
+  );
+  margin-top: 6px;
+}
+
+.exp-period {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom:  8px;
+}
+
+.exp-role {
+  font-size:     16px;
+  font-weight:   700;
+  margin-bottom: 4px;
+}
+
+.exp-company {
+  font-size:     13px;
+  color:         var(--color-amber);
+  margin-bottom: 12px;
+  font-weight:   500;
+}
+
+.exp-desc {
+  font-size:   13px;
+  color:       var(--color-muted);
+  line-height: 1.7;
+}
+
+/* ── EDUCACIÓN ────────────────────────────────────────────── */
+.edu-label,
+.certs-label {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-amber);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom:  28px;
+}
+
+.edu-label::before,
+.certs-label::before {
+  content:  '// ';
+  opacity:  0.4;
+}
+
+.certs-label {
+  margin-top: 40px;
+}
+
+/* Card de educación */
+.edu-card {
+  background:  var(--color-bg-2);
+  border:      1px solid var(--color-line);
+  padding:     28px;
+  margin-bottom: 16px;
+  transition:  border-color var(--transition-base);
+}
+
+.edu-card:hover {
+  border-color: rgba(232, 162, 48, 0.25);
+}
+
+.edu-year {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom:  10px;
+}
+
+.edu-title {
+  font-size:     16px;
+  font-weight:   700;
+  margin-bottom: 4px;
+}
+
+.edu-inst {
+  font-size: 13px;
+  color:     var(--color-text-2);
+}
+
+/* Filas de certificaciones */
+.cert-row {
+  display:     flex;
+  align-items: center;
+  gap:         14px;
+  padding:     14px 0;
+  border-bottom: 1px solid var(--color-line-2);
+}
+
+.cert-row:first-of-type {
+  border-top: 1px solid var(--color-line-2);
+}
+
+.cert-dot {
+  width:         4px;
+  height:        4px;
+  border-radius: 50%;
+  background:    var(--color-amber);
+  flex-shrink:   0;
+}
+
+.cert-name {
+  font-size: 13px;
+  color:     var(--color-text-2);
+  flex:      1;
+}
+
+.cert-issuer {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   6. CONTACT — Contacto
+   ============================================================ */
+
+#contact {
+  padding:               0;
+  border-top:            1px solid var(--color-line);
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  min-height:            70vh;
+}
+
+/* Columna izquierda: texto y CTA */
+.contact-left {
+  padding:        var(--space-3xl) var(--space-xl);
+  border-right:   1px solid var(--color-line);
+  display:        flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-heading {
+  font-size:      clamp(40px, 5vw, 76px);
+  font-weight:    800;
+  letter-spacing: -3px;
+  line-height:    1;
+  margin-bottom:  24px;
+}
+
+.contact-heading em {
+  color:      var(--color-amber);
+  font-style: normal;
+}
+
+.contact-sub {
+  font-size:     16px;
+  color:         var(--color-muted);
+  line-height:   1.75;
+  max-width:     360px;
+  margin-bottom: 48px;
+  font-weight:   300;
+}
+
+/* Columna derecha: datos de contacto */
+.contact-right {
+  padding:        var(--space-3xl) var(--space-xl);
+  background:     var(--color-bg-2);
+  display:        flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-detail {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom:  8px;
+}
+
+.contact-value {
+  font-size:     18px;
+  font-weight:   600;
+  color:         var(--color-text);
+  margin-bottom: 36px;
+}
+
+/* Lista de redes sociales */
+.social-list {
+  display:        flex;
+  flex-direction: column;
+}
+
+.social-link {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         18px 0;
+  border-bottom:   1px solid var(--color-line-2);
+  font-family:     var(--font-mono);
+  font-size:       12px;
+  color:           var(--color-muted);
+  letter-spacing:  2px;
+  text-transform:  uppercase;
+  transition:      color var(--transition-base);
+}
+
+.social-link:first-child {
+  border-top: 1px solid var(--color-line-2);
+}
+
+.social-link:hover {
+  color: var(--color-amber);
+}
+
+/* Flecha que se mueve al hacer hover */
+.social-link::after {
+  content:    '↗';
+  transition: transform var(--transition-base);
+}
+
+.social-link:hover::after {
+  transform: translate(2px, -2px);
+}
+
+
+/* ============================================================
+   7. FOOTER
+   ============================================================ */
+
+footer {
+  padding:         28px var(--space-xl);
+  border-top:      1px solid var(--color-line);
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  flex-wrap:       wrap;
+  gap:             12px;
+}
+
+footer p {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+footer span {
+  color: var(--color-amber);
+}

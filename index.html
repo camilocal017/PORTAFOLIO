@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+╔══════════════════════════════════════════════════════════════╗
+║  CAMILO A. CALDERÓN SALAZAR — PORTFOLIO PERSONAL             ║
+║  Full Stack Developer & Data Analyst                         ║
+╠══════════════════════════════════════════════════════════════╣
+║  index.html  → Estructura y contenido                        ║
+║  css/        → Estilos separados por responsabilidad         ║
+║  js/         → Lógica separada por módulo                    ║
+║  assets/     → Foto y CV                                     ║
+╚══════════════════════════════════════════════════════════════╝
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Camilo Calderón — Full Stack Developer & Data Analyst. Python, Django, React. Bogotá, Colombia.">
+  <meta name="keywords"    content="Full Stack Developer, Data Analyst, Python, Django, React, Bogotá, MySQL, Bootstrap">
+  <meta name="author"      content="Camilo A. Calderón Salazar">
+  <meta property="og:title"       content="Camilo Calderón — Full Stack Developer">
+  <meta property="og:description" content="Desarrollador Full Stack con experiencia en Python, Django, React y análisis de datos.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://camilocalderon.dev">
+  <title>Camilo Calderón — Full Stack Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú">
+    <a href="#hero"       onclick="closeMobileMenu()">Home</a>
+    <a href="#about"      onclick="closeMobileMenu()">About</a>
+    <a href="#skills"     onclick="closeMobileMenu()">Skills</a>
+    <a href="#projects"   onclick="closeMobileMenu()">Projects</a>
+    <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+    <a href="#contact"    onclick="closeMobileMenu()">Contact</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-logo">CC<span>.</span>DEV</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Contactar →</a>
+    <button class="nav-burger" id="burger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg-grid" aria-hidden="true"></div>
+    <div class="hero-glow"    aria-hidden="true"></div>
+
+    <div class="hero-content">
+
+      <div class="hero-badge">
+        <div class="badge-dot" aria-hidden="true"></div>
+        <span>Te ayudo a ser más visible y efectivo</span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="n1">Camilo</span>
+        <span class="n2">Calderón</span>
+      </h1>
+
+      <p class="hero-role" id="hero-role">
+        <span class="typed-cursor">|</span>
+      </p>
+
+      <p class="hero-desc">
+        Desarrollo soluciones web <strong>full stack</strong> y convierto datos en
+        decisiones. Experiencia real en Python, Django, React y análisis de datos —
+        con foco en código limpio y arquitectura que escala.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">Ver proyectos →</a>
+        <a href="assets/cv-camilo-calderon.pdf" class="btn-ghost" download>Descargar CV</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-n" data-count="3">0</div>
+          <div class="hstat-l">Años cod.</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n" data-count="6">0</div>
+          <div class="hstat-l">Proyectos</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-n" data-count="10">0</div>
+          <div class="hstat-l">Tecnologías</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════════════════ -->
+  <section id="about" class="section">
+
+    <p class="sec-eyebrow reveal">01 — Sobre mí</p>
+
+    <div class="about-grid">
+
+      <div class="about-photo-wrap reveal">
+        <div class="about-photo-frame">
+          <!--
+            CÓMO AGREGAR TU FOTO:
+            1. Copia tu foto a: assets/img/foto.jpg
+            2. Borra el bloque .about-photo-placeholder
+            3. Descomenta la línea de abajo
+          -->
+          <!-- <img src="assets/img/foto.jpg" alt="Camilo Calderón"> -->
+          <div class="about-photo-placeholder">
+            <span>👤</span>
+            Agrega tu foto<br>
+            <small>assets/img/foto.jpg</small>
+          </div>
+        </div>
+        <div class="about-tag">Bogotá, CO</div>
+      </div>
+
+      <div class="about-text">
+
+        <h2 class="sec-title reveal d1">
+          Full Stack &<br><em>Data Analyst</em>
+        </h2>
+
+        <p class="reveal d1">
+          Soy desarrollador Full Stack especializado en construir soluciones digitales que realmente generan resultados.<br>
+Combino programación y análisis de datos para crear sistemas eficientes, automatizar procesos y mejorar la toma de decisiones. He trabajado con datos reales en entornos deportivos y desarrollo soluciones completas usando Python, React y bases de datos.<br>
+No solo programo: entiendo el negocio, detecto problemas y los convierto en herramientas funcionales.<br>
+Si buscas a alguien que entregue soluciones claras, bien estructuradas y listas para usar, soy la persona indicada.<br>
+        </p>
+
+        <p class="reveal d2">
+          Me especializo en construir desde el backend robusto hasta la interfaz que
+          el usuario ve — con <strong>Python, Django, React y MySQL</strong>. También
+          tengo experiencia en análisis y visualización de datos con Pandas,
+          Matplotlib y Power BI.
+        </p>
+
+        <div class="about-facts reveal d2">
+          <div class="fact">
+            <div class="fact-label">Ubicación</div>
+            <div class="fact-value">Bogotá, Colombia</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Modalidad</div>
+            <div class="fact-value">Remoto / Híbrido</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Disponibilidad</div>
+            <div class="fact-value">Inmediata</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Idiomas</div>
+            <div class="fact-value">Español · Inglés avanzado</div>
+          </div>
+        </div>
+
+        <div class="about-links reveal d3">
+          <a href="#contact" class="btn-primary">Contactar →</a>
+          <a href="assets/cv-camilo-calderon.pdf" class="btn-ghost" download>CV PDF</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SKILLS
+  ══════════════════════════════════════════════════════ -->
+  <section id="skills" class="section">
+
+    <p class="sec-eyebrow reveal">02 — Stack técnico</p>
+    <h2 class="sec-title reveal d1">Lo que construyo<br>y <em>domino</em></h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">&lt;/&gt;</div>
+        <div class="skill-card-name">Frontend</div>
+        <div class="skill-card-desc">
+          Interfaces funcionales y bien diseñadas. HTML semántico,
+          estilos con CSS/Bootstrap y lógica con JavaScript y React.
+        </div>
+        <div class="skill-tags">
+          <span class="stag">HTML5</span>
+          <span class="stag">CSS3</span>
+          <span class="stag">JavaScript</span>
+          <span class="stag">Bootstrap</span>
+          <span class="stag">React</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal d1">
+        <div class="skill-card-icon">{ }</div>
+        <div class="skill-card-name">Backend</div>
+        <div class="skill-card-desc">
+          APIs y aplicaciones web robustas con Python y Django.
+          Arquitectura MVC, autenticación y lógica de negocio bien estructurada.
+        </div>
+        <div class="skill-tags">
+          <span class="stag">Python</span>
+          <span class="stag">Django</span>
+          <span class="stag">Flask</span>
+          <span class="stag">REST APIs</span>
+          <span class="stag">Java básico</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal d2">
+        <div class="skill-card-icon">◈ ∑</div>
+        <div class="skill-card-name">Data & Analytics</div>
+        <div class="skill-card-desc">
+          Recolección, limpieza y análisis de datos reales. Reportes,
+          visualizaciones y dashboards con Power BI, Pandas y Matplotlib.
+        </div>
+        <div class="skill-tags">
+          <span class="stag">Pandas</span>
+          <span class="stag">Matplotlib</span>
+          <span class="stag">Seaborn</span>
+          <span class="stag">Power BI</span>
+          <span class="stag">Excel avanzado</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal d3">
+        <div class="skill-card-icon">⬡ ⚙</div>
+        <div class="skill-card-name">DB & Entornos</div>
+        <div class="skill-card-desc">
+          Bases de datos relacionales, control de versiones y entornos
+          de desarrollo modernos para trabajo individual y en equipo.
+        </div>
+        <div class="skill-tags">
+          <span class="stag">MySQL</span>
+          <span class="stag">Git</span>
+          <span class="stag">GitHub</span>
+          <span class="stag">VS Code</span>
+          <span class="stag">Jupyter</span>
+          <span class="stag">Google Colab</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bars">
+      <p class="bars-title">Nivel de dominio</p>
+
+      <div class="bar-row reveal">
+        <span class="bar-name">Python / Django</span>
+        <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+        <span class="bar-pct">85%</span>
+      </div>
+      <div class="bar-row reveal d1">
+        <span class="bar-name">HTML / CSS / JS</span>
+        <div class="bar-track"><div class="bar-fill" style="width:99%"></div></div>
+        <span class="bar-pct">99%</span>
+      </div>
+      <div class="bar-row reveal d2">
+        <span class="bar-name">Data Analysis</span>
+        <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        <span class="bar-pct">90%</span>
+      </div>
+      <div class="bar-row reveal d3">
+        <span class="bar-name">MySQL / Bases de datos</span>
+        <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+        <span class="bar-pct">85%</span>
+      </div>
+      <div class="bar-row reveal d4">
+        <span class="bar-name">Power BI / Excel</span>
+        <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+        <span class="bar-pct">85%</span>
+      </div>
+      <div class="bar-row reveal">
+        <span class="bar-name">React</span>
+        <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+        <span class="bar-pct">85%</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       PROJECTS
+  ══════════════════════════════════════════════════════ -->
+  <section id="projects" class="section">
+
+    <div class="proj-header">
+      <div>
+        <p class="sec-eyebrow reveal">03 — Portafolio</p>
+        <h2 class="sec-title reveal d1">Proyectos<br><em>seleccionados</em></h2>
+      </div>
+      <a href="https://github.com/camilocalderon" class="btn-ghost reveal d2" target="_blank" rel="noopener">
+        Ver GitHub →
+      </a>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- PROYECTO 01 -->
+      <div class="proj-card reveal">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm"># liga_ciclismo/analysis.py</span>
+<span class="ck">import</span> pandas <span class="ck">as</span> pd
+
+df = pd.read_csv(<span class="cs">'deportistas.csv'</span>)
+df = df.dropna(subset=[<span class="cs">'nombre'</span>])
+df[<span class="cs">'activo'</span>] = df[<span class="cs">'estado'</span>] == <span class="cs">'activo'</span>
+
+reporte = df.groupby(<span class="cs">'categoria'</span>).agg(
+  total=(<span class="cs">'id'</span>, <span class="cs">'count'</span>),
+  activos=(<span class="cs">'activo'</span>, <span class="cs">'sum'</span>)
+)
+reporte.to_excel(<span class="cs">'reporte.xlsx'</span>)</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocalderon" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-freelance">Experiencia real</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">01</div>
+          <div class="proj-title">Liga de Ciclismo de Bogotá</div>
+          <div class="proj-desc">
+            Gestión, limpieza y análisis de bases de datos de deportistas.
+            Generación de reportes periódicos sobre rendimiento y participación.
+            Visualización de datos para apoyo en decisiones administrativas y deportivas.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">Python</span>
+            <span class="stag project">Pandas</span>
+            <span class="stag project">Excel</span>
+            <span class="stag project">Matplotlib</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocalderon" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 02 -->
+      <div class="proj-card reveal d1">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm"># models.py — Django</span>
+<span class="ck">class</span> Producto(models.Model):
+  nombre = models.CharField(
+    max_length=<span class="cs">200</span>
+  )
+  precio = models.DecimalField(
+    max_digits=<span class="cs">10</span>,
+    decimal_places=<span class="cs">2</span>
+  )
+  stock = models.IntegerField(
+    default=<span class="cs">0</span>
+  )
+  <span class="ck">def</span> __str__(self):
+    <span class="ck">return</span> self.nombre</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocalderon" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-study">Proyecto estudio</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">02</div>
+          <div class="proj-title">E-Commerce con Django</div>
+          <div class="proj-desc">
+            Plataforma de comercio electrónico completa: catálogo de productos,
+            carrito de compras, gestión de pedidos y panel de administración.
+            Backend Django con MySQL y frontend Bootstrap.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">Django</span>
+            <span class="stag project">Python</span>
+            <span class="stag project">MySQL</span>
+            <span class="stag project">Bootstrap</span>
+            <span class="stag project">JavaScript</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocalderon" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+            <a href="#" class="proj-link secondary">Demo →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 03 -->
+      <div class="proj-card reveal d2">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm"># dashboard con Flask</span>
+<span class="ck">from</span> flask <span class="ck">import</span> Flask, render_template
+<span class="ck">import</span> pandas <span class="ck">as</span> pd
+
+app = Flask(__name__)
+
+<span class="ck">@app.route</span>(<span class="cs">'/'</span>)
+<span class="ck">def</span> dashboard():
+  df = pd.read_csv(<span class="cs">'datos.csv'</span>)
+  stats = df.describe().to_dict()
+  <span class="ck">return</span> render_template(
+    <span class="cs">'index.html'</span>, stats=stats
+  )</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocalderon" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-study">Proyecto estudio</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">03</div>
+          <div class="proj-title">Dashboard Analítico con Flask</div>
+          <div class="proj-desc">
+            Dashboard web construido con Flask y Python para visualización
+            de datos en tiempo real. Tablas interactivas, gráficas con
+            Matplotlib y exportación de reportes en Excel.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">Flask</span>
+            <span class="stag project">Python</span>
+            <span class="stag project">Pandas</span>
+            <span class="stag project">Matplotlib</span>
+            <span class="stag project">HTML/CSS</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocalderon" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 04 -->
+      <div class="proj-card reveal d3">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm">// React — componente de tabla</span>
+<span class="ck">export function</span> DataTable({ data }) {
+  <span class="ck">const</span> [filter, setFilter] =
+    useState(<span class="cs">''</span>)
+
+  <span class="ck">const</span> filtered = data.filter(
+    row => row.nombre
+      .toLowerCase()
+      .includes(filter)
+  )
+  <span class="ck">return</span> (
+    &lt;Table rows={filtered} /&gt;
+  )
+}</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocalderon" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-study">Proyecto estudio</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">04</div>
+          <div class="proj-title">App de Gestión con React</div>
+          <div class="proj-desc">
+            Aplicación frontend en React para gestión de registros con
+            filtros dinámicos, paginación y conexión a API REST.
+            Estado manejado con hooks y componentes reutilizables.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">React</span>
+            <span class="stag project">JavaScript</span>
+            <span class="stag project">REST API</span>
+            <span class="stag project">CSS3</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocalderon" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 05 -->
+      <div class="proj-card reveal">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm">-- MySQL: análisis de ventas</span>
+<span class="ck">SELECT</span>
+  categoria,
+  <span class="ck">COUNT</span>(*) <span class="ck">AS</span> total_ventas,
+  <span class="ck">SUM</span>(precio) <span class="ck">AS</span> ingresos,
+  <span class="ck">AVG</span>(precio) <span class="ck">AS</span> ticket_prom
+<span class="ck">FROM</span> ventas
+<span class="ck">WHERE</span> fecha >= <span class="cs">'2024-01-01'</span>
+<span class="ck">GROUP BY</span> categoria
+<span class="ck">ORDER BY</span> ingresos <span class="ck">DESC</span>;</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocalderon" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-personal">Personal</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">05</div>
+          <div class="proj-title">Análisis de Ventas con SQL</div>
+          <div class="proj-desc">
+            Análisis exploratorio completo sobre dataset de ventas retail usando
+            MySQL. Consultas avanzadas, agrupaciones, métricas clave y
+            visualización final con Power BI.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">MySQL</span>
+            <span class="stag project">SQL</span>
+            <span class="stag project">Power BI</span>
+            <span class="stag project">Excel</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocalderon" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 06 -->
+      <div class="proj-card reveal d1">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm"># marketing/campaigns.py</span>
+<span class="ck">import</span> pandas <span class="ck">as</span> pd
+
+df = pd.read_csv(<span class="cs">'metricas.csv'</span>)
+
+<span class="cm"># KPIs de campaña</span>
+df[<span class="cs">'CTR'</span>] = (
+  df[<span class="cs">'clicks'</span>] / df[<span class="cs">'impresiones'</span>]
+) * <span class="cs">100</span>
+
+df[<span class="cs">'ROAS'</span>] = (
+  df[<span class="cs">'ingresos'</span>] / df[<span class="cs">'inversion'</span>]
+)
+
+top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocalderon" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-freelance">Experiencia real</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">06</div>
+          <div class="proj-title">Análisis de Campañas Digitales</div>
+          <div class="proj-desc">
+            Análisis de métricas de marketing digital para club deportivo
+            "Hecho en Colombia". KPIs de campaña, análisis de mercado y
+            reportes de rendimiento con Python y Excel.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">Python</span>
+            <span class="stag project">Pandas</span>
+            <span class="stag project">Excel</span>
+            <span class="stag project">Marketing Digital</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocalderon" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       EXPERIENCE
+  ══════════════════════════════════════════════════════ -->
+  <section id="experience" class="section">
+
+    <p class="sec-eyebrow reveal">04 — Trayectoria</p>
+    <h2 class="sec-title reveal d1">Experiencia &<br><em>formación</em></h2>
+
+    <div class="exp-layout">
+
+      <!-- Timeline -->
+      <div class="exp-timeline">
+        <p class="exp-timeline-label">// Experiencia</p>
+
+        <div class="exp-item active reveal">
+          <div class="exp-line-wrap">
+            <div class="exp-dot"></div>
+            <div class="exp-vert"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-period">Jun 2025</div>
+            <div class="exp-role">Desarrollador Full Stack</div>
+            <div class="exp-company">Consorcio Advance</div>
+            <div class="exp-desc">Desarrollo de aplicaciones web con Python y Django. Integración de bases de datos MySQL y trabajo con equipos en entornos ágiles.</div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal d1">
+          <div class="exp-line-wrap">
+            <div class="exp-dot"></div>
+            <div class="exp-vert"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-period">2024 — 6 meses</div>
+            <div class="exp-role">Analista de Datos</div>
+            <div class="exp-company">Liga de Ciclismo de Bogotá</div>
+            <div class="exp-desc">Recolección, limpieza y análisis de bases de datos de deportistas. Reportes periódicos de rendimiento, identificación de inconsistencias y visualización con Excel y Python (Pandas).</div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal d2">
+          <div class="exp-line-wrap">
+            <div class="exp-dot"></div>
+            <div class="exp-vert"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-period">Dic 2023</div>
+            <div class="exp-role">Desarrollador Full Stack</div>
+            <div class="exp-company">Universidad Distrital Francisco José de Caldas</div>
+            <div class="exp-desc">Certificación en desarrollo full stack. Proyectos con HTML, CSS, JavaScript, Python y bases de datos relacionales.</div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal d3">
+          <div class="exp-line-wrap">
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-period">2023</div>
+            <div class="exp-role">Marketing Digital</div>
+            <div class="exp-company">Club Deportivo: Hecho en Colombia</div>
+            <div class="exp-desc">Gestión de campañas digitales y análisis de mercado. Métricas de rendimiento y estrategia de contenido.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Educación -->
+      <div class="exp-education">
+
+        <p class="edu-label">Formación académica</p>
+
+        <div class="edu-card reveal">
+          <div class="edu-year">Actual</div>
+          <div class="edu-title">Análisis y Desarrollo de Software</div>
+          <div class="edu-inst">SENA · En curso</div>
+        </div>
+
+
+        <div class="edu-card reveal d2">
+          <div class="edu-year">Profesional</div>
+          <div class="edu-title">Administración Deportiva</div>
+          <div class="edu-inst">Universidad Distrital Francisco José de Caldas</div>
+        </div>
+
+        <p class="certs-label">Certificaciones</p>
+
+        <div class="cert-row reveal d3">
+          <div class="cert-dot"></div>
+          <div class="cert-name">PYTHON</div>
+          <div class="cert-issuer">Certiplus</div>
+        </div>
+
+        <div class="cert-row reveal">
+          <div class="cert-dot"></div>
+          <div class="cert-name">Desarrollo Web Backend Python/Django (Flask)</div>
+          <div class="cert-issuer">U. de los Andes · 2025</div>
+        </div>
+        <div class="cert-row reveal d1">
+          <div class="cert-dot"></div>
+          <div class="cert-name">Excel Avanzado y Power BI</div>
+          <div class="cert-issuer">Colsubsidio TECH · Abr 2026</div>
+        </div>
+        <div class="cert-row reveal d2">
+          <div class="cert-dot"></div>
+          <div class="cert-name">Desarrollador Full Stack Básico</div>
+          <div class="cert-issuer">U. Distrital · Dic 2023</div>
+        </div>
+        <div class="cert-row reveal d3">
+          <div class="cert-dot"></div>
+          <div class="cert-name">Análisis y Desarrollo de Software</div>
+          <div class="cert-issuer">SENA · Actual</div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════════════════ -->
+  <section id="contact">
+
+    <div class="contact-left">
+      <div>
+        <p class="sec-eyebrow reveal" style="margin-bottom:24px">05 — Contacto</p>
+        <h2 class="contact-heading reveal d1">
+          ¿Hablamos<br>de tu<br><em>proyecto?</em>
+        </h2>
+        <p class="contact-sub reveal d2">
+          Estoy en búsqueda activa de nuevos retos — ya sea en empresa,
+          startup o proyectos freelance donde pueda aportar valor real
+          desde el primer día.
+        </p>
+      </div>
+      <a href="mailto:salazarcamilo21@gmail.com" class="btn-primary reveal d3" style="align-self:flex-start">
+        Enviar email →
+      </a>
+    </div>
+
+    <div class="contact-right">
+      <div class="contact-detail">Email</div>
+      <div class="contact-value">salazarcamilo21@gmail.com</div>
+
+      <div class="contact-detail">Teléfono</div>
+      <div class="contact-value">+57 313 891 2426</div>
+
+      <div class="contact-detail">Ubicación</div>
+      <div class="contact-value">Bogotá, Colombia · Remote OK</div>
+
+      <div class="social-list">
+        <a href="https://github.com/camilocalderon"      class="social-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/camilocalderon" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/cv-camilo-calderon.pdf"           class="social-link" download>Descargar CV</a>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>Camilo A. Calderón Salazar</span></p>
+    <p>Bogotá, Colombia · <span>Open to remote</span></p>
+    <p>Diseñado &amp; construido por <span>mí</span></p>
+  </footer>
+
+
+  <!-- SCRIPTS — al final del body, en orden correcto -->
+  <script src="js/cursor.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/typed.js"></script>
+  <script src="js/counters.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/ticker.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

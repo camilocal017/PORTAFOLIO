@@ -1,0 +1,147 @@
+/*
+ * ============================================================
+ *  responsive.css
+ *  Media queries para mobile y tablet
+ *
+ *  Breakpoints:
+ *   < 900px  → tablet / mobile landscape
+ *   < 600px  → mobile portrait
+ * ============================================================
+ */
+
+/* ── TABLET Y MOBILE (menos de 900px) ──────────────────────*/
+@media (max-width: 900px) {
+
+  /* Nav: ocultar links y mostrar hamburguesa */
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-burger {
+    display: flex;
+  }
+
+  nav,
+  nav.scrolled {
+    padding: 20px 24px;
+  }
+
+  /* Hero */
+  #hero {
+    padding:     0 24px;
+    padding-top: 90px;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+  }
+
+  .hstat {
+    padding: 16px 24px 0 0;
+  }
+
+  .scroll-hint {
+    left: 24px;
+  }
+
+  /* Secciones: menos padding lateral */
+  .section {
+    padding: 70px 24px;
+  }
+
+  .sec-title {
+    font-size: 36px;
+  }
+
+  /* About: columna única */
+  #about .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-photo-wrap {
+    max-width: 300px;
+  }
+
+  /* Projects: columna única */
+  .proj-header {
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            20px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Experience: columna única */
+  .exp-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  /* Contact: columna única */
+  #contact {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-left,
+  .contact-right {
+    padding: 70px 24px;
+  }
+
+  /* Footer */
+  footer {
+    padding:        24px;
+    flex-direction: column;
+    align-items:    flex-start;
+    gap:            8px;
+  }
+
+  /* Barras de skills: grid más compacto */
+  .bar-row {
+    grid-template-columns: 140px 1fr 36px;
+    gap: 16px;
+  }
+}
+
+/* ── MOBILE PORTRAIT (menos de 600px) ──────────────────────*/
+@media (max-width: 600px) {
+
+  .hero-name {
+    letter-spacing: -2px;
+  }
+
+  .hero-stats {
+    gap: 0;
+  }
+
+  .hstat + .hstat {
+    border-left: 1px solid var(--color-line);
+    padding-left: 20px;
+  }
+
+  .about-facts {
+    grid-template-columns: 1fr;
+  }
+
+  /* Todos los facts sin borde derecho en mobile */
+  .fact {
+    border-right:  none;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .fact:last-child {
+    border-bottom: none;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-heading {
+    font-size: 40px;
+    letter-spacing: -2px;
+  }
+}

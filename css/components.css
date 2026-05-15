@@ -1,0 +1,386 @@
+/*
+ * ============================================================
+ *  components.css
+ *  Componentes reutilizables de UI
+ *
+ *  Contenido:
+ *  1. Cursor personalizado
+ *  2. Navegación principal
+ *  3. Menú móvil
+ *  4. Botones (primario y ghost)
+ *  5. Tags de tecnología
+ *  6. Badges de proyectos
+ *  7. Ticker / marquee
+ * ============================================================
+ */
+
+
+/* ============================================================
+   1. CURSOR PERSONALIZADO
+   Reemplaza el cursor del sistema operativo.
+   Controlado por js/cursor.js
+   ============================================================ */
+
+/* Punto pequeño que sigue al cursor exactamente */
+#cursor-dot {
+  position:         fixed;
+  width:            7px;
+  height:           7px;
+  background:       var(--color-amber);
+  border-radius:    50%;
+  pointer-events:   none;       /* No interfiere con clicks          */
+  z-index:          9999;
+  transform:        translate(-50%, -50%);
+  transition:       width .2s, height .2s, background .2s, border .2s;
+  will-change:      left, top;  /* Optimización de rendimiento       */
+}
+
+/* Anillo grande que sigue con retraso (efecto suave) */
+#cursor-ring {
+  position:       fixed;
+  width:          34px;
+  height:         34px;
+  border:         1px solid rgba(232, 162, 48, 0.4);
+  border-radius:  50%;
+  pointer-events: none;
+  z-index:        9998;
+  transform:      translate(-50%, -50%);
+  will-change:    left, top;
+}
+
+/* Estado hover: el punto se agranda y se vuelve transparente */
+body.cursor-hover #cursor-dot {
+  width:      40px;
+  height:     40px;
+  background: rgba(232, 162, 48, 0.1);
+  border:     1px solid var(--color-amber);
+}
+
+/* El anillo desaparece en hover para no superponerse */
+body.cursor-hover #cursor-ring {
+  opacity: 0;
+}
+
+
+/* ============================================================
+   2. NAVEGACIÓN PRINCIPAL
+   ============================================================ */
+
+nav {
+  position:        fixed;
+  top:             0;
+  left:            0;
+  right:           0;
+  z-index:         200;
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         24px var(--space-xl);
+
+  /* Degradado transparente → oscuro hacia arriba */
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 18, 16, 0.95) 60%,
+    transparent
+  );
+  backdrop-filter: blur(8px);
+  transition:      padding var(--transition-base);
+}
+
+/* Nav compacto al hacer scroll — clase añadida por js/nav.js */
+nav.scrolled {
+  padding:    16px var(--space-xl);
+  background: rgba(20, 18, 16, 0.97);
+}
+
+/* Logo CC.DEV */
+.nav-logo {
+  font-family:    var(--font-mono);
+  font-size:      14px;
+  color:          var(--color-amber);
+  letter-spacing: 3px;
+  font-weight:    700;
+}
+
+/* El punto del logo en color apagado */
+.nav-logo span {
+  color:       var(--color-muted);
+  font-weight: 400;
+}
+
+/* Lista de links */
+.nav-links {
+  display:     flex;
+  gap:         40px;
+  list-style:  none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition:     color var(--transition-base);
+  position:       relative;
+  padding-bottom: 2px;
+}
+
+/* Línea ámbar que aparece desde la izquierda al hacer hover */
+.nav-links a::after {
+  content:          '';
+  position:         absolute;
+  bottom:           -2px;
+  left:             0;
+  width:            0;
+  height:           1px;
+  background:       var(--color-amber);
+  transition:       width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--color-amber);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Botón CTA en la nav */
+.nav-cta {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background:     var(--color-amber);
+  color:          var(--color-bg);
+  padding:        10px 22px;
+  font-weight:    700;
+  transition:     transform var(--transition-fast), box-shadow var(--transition-base);
+}
+
+.nav-cta:hover {
+  color:      var(--color-bg);
+  transform:  translateY(-1px);
+  box-shadow: var(--shadow-amber);
+}
+
+/* Botón hamburguesa — solo visible en mobile (ver responsive.css) */
+.nav-burger {
+  display:        none;
+  flex-direction: column;
+  gap:            5px;
+  padding:        4px;
+}
+
+.nav-burger span {
+  display:    block;
+  width:      22px;
+  height:     1px;
+  background: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+
+/* ============================================================
+   3. MENÚ MÓVIL (overlay pantalla completa)
+   ============================================================ */
+
+.mobile-menu {
+  display:         none;       /* Oculto por defecto                  */
+  position:        fixed;
+  inset:           0;          /* top/right/bottom/left = 0           */
+  z-index:         190;
+  background:      var(--color-bg-2);
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  gap:             40px;
+}
+
+/* Se muestra cuando js añade la clase .open */
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu a {
+  font-family:    var(--font-mono);
+  font-size:      14px;
+  color:          var(--color-text);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition:     color var(--transition-base);
+}
+
+.mobile-menu a:hover {
+  color: var(--color-amber);
+}
+
+
+/* ============================================================
+   4. BOTONES
+   ============================================================ */
+
+/* Botón primario — fondo ámbar, texto oscuro */
+.btn-primary {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             10px;
+  background:      var(--color-amber);
+  color:           var(--color-bg);
+  font-family:     var(--font-mono);
+  font-size:       11px;
+  font-weight:     700;
+  letter-spacing:  2px;
+  text-transform:  uppercase;
+  padding:         14px 30px;
+  transition:      transform var(--transition-fast), box-shadow var(--transition-base);
+}
+
+.btn-primary:hover {
+  color:      var(--color-bg);
+  transform:  translateY(-2px);
+  box-shadow: var(--shadow-amber);
+}
+
+/* Botón ghost — borde sutil, texto claro */
+.btn-ghost {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             10px;
+  background:      transparent;
+  color:           var(--color-text);
+  font-family:     var(--font-mono);
+  font-size:       11px;
+  letter-spacing:  2px;
+  text-transform:  uppercase;
+  padding:         13px 30px;
+  border:          1px solid var(--color-line-2);
+  transition:      border-color var(--transition-base), color var(--transition-base);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-amber);
+  color:        var(--color-amber);
+}
+
+
+/* ============================================================
+   5. TAGS DE TECNOLOGÍA
+   Usados en skill cards y project cards
+   ============================================================ */
+
+.stag {
+  font-family:    var(--font-mono);
+  font-size:      10px;
+  color:          var(--color-amber);
+  background:     rgba(232, 162, 48, 0.06);
+  border:         1px solid rgba(232, 162, 48, 0.14);
+  padding:        4px 12px;
+  letter-spacing: 1px;
+  white-space:    normal;          /* Permite que el texto haga wrap     */
+  display:        inline-block;    /* Necesario para padding correcto     */
+}
+
+/* Variante para proyectos — tono más oscuro */
+.stag.project {
+  color:      var(--color-amber-dark);
+  background: rgba(196, 130, 26, 0.06);
+  border-color: rgba(196, 130, 26, 0.18);
+}
+
+
+/* ============================================================
+   6. BADGES DE PROYECTOS
+   Aparecen en la esquina superior izquierda de cada proyecto
+   ============================================================ */
+
+.proj-badge {
+  position:       absolute;
+  top:            16px;
+  left:           16px;
+  font-family:    var(--font-mono);
+  font-size:      9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight:    700;
+  padding:        4px 12px;
+}
+
+/* Verde/ámbar → proyecto de estudio */
+.badge-study {
+  background:   rgba(20, 18, 16, 0.85);
+  color:        var(--color-amber);
+  border:       1px solid rgba(232, 162, 48, 0.3);
+}
+
+/* Gris → proyecto personal */
+.badge-personal {
+  background:   rgba(20, 18, 16, 0.85);
+  color:        var(--color-text-2);
+  border:       1px solid var(--color-line-2);
+}
+
+/* Azul → proyecto freelance */
+.badge-freelance {
+  background:   rgba(20, 18, 16, 0.85);
+  color:        #7eb8f7;
+  border:       1px solid rgba(126, 184, 247, 0.3);
+}
+
+
+/* ============================================================
+   7. TICKER / MARQUEE
+   Banda horizontal que desplaza el stack tecnológico
+   ============================================================ */
+
+.ticker {
+  overflow:      hidden;
+  background:    var(--color-bg-2);
+  padding:       14px 0;
+  border-top:    1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* La pista — animación CSS infinita */
+.ticker-track {
+  display:   flex;
+  width:      max-content;
+  animation: ticker-scroll 28s linear infinite;
+}
+
+/* Pausa al hacer hover */
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* Cada elemento de la pista */
+.ticker-item {
+  font-family:    var(--font-mono);
+  font-size:      11px;
+  color:          var(--color-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding:        0 32px;
+  white-space:    nowrap;
+  border-right:   1px solid var(--color-line-2);
+  display:        flex;
+  align-items:    center;
+  gap:            10px;
+}
+
+/* Diamante decorativo antes de cada ítem */
+.ticker-item::before {
+  content:    '◆';
+  color:      var(--color-amber);
+  font-size:  7px;
+  opacity:    0.6;
+}
+
+/* Keyframe del desplazamiento: la pista está duplicada en JS
+   entonces se mueve el 50% (equivale a un loop perfecto) */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
