@@ -105,7 +105,7 @@
           <div class="hstat-l">Años cod.</div>
         </div>
         <div class="hstat">
-          <div class="hstat-n" data-count="1">0</div>
+          <div class="hstat-n" data-count="2">0</div>
           <div class="hstat-l">Proyectos</div>
         </div>
         <div class="hstat">
@@ -374,7 +374,47 @@ Si buscas a alguien que entregue soluciones claras, bien estructuradas y listas 
         </div>
       </div>
 
-      <!-- PROYECTO 02 -->
+      <!-- PROYECTO 02 · DATAANALYTIC IA -->
+      <div class="proj-card reveal d1">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm"># backend/main.py — FastAPI + Gemini</span>
+<span class="ck">@app.post</span>(<span class="cs">"/analyze"</span>)
+<span class="ck">async def</span> analyze(file: UploadFile):
+  df = pd.read_csv(file, sep=<span class="cs">None</span>)
+  charts = build_chart_data(df)
+  insights = gemini.generate(df)
+  <span class="ck">return</span> {<span class="cs">"charts"</span>: charts,
+          <span class="cs">"ai_insights"</span>: insights}</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://github.com/camilocal017/data-analytic-ia" class="proj-overlay-btn" target="_blank" rel="noopener">Ver código →</a>
+          </div>
+          <span class="proj-badge badge-freelance">Nuevo</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">02</div>
+          <div class="proj-title">DataAnalytic IA — Análisis CSV con IA</div>
+          <div class="proj-desc">
+            Herramienta de análisis de datos que genera gráficas automáticas,
+            estadísticas descriptivas e insights en lenguaje natural usando Google Gemini.
+            Detecta fechas, métricas y categorías sin configuración. Fallback local sin API.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">FastAPI</span>
+            <span class="stag project">React</span>
+            <span class="stag project">Gemini AI</span>
+            <span class="stag project">Pandas</span>
+            <span class="stag project">Recharts</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/camilocal017/data-analytic-ia" class="proj-link" target="_blank" rel="noopener">GitHub →</a>
+            <a href="https://data-analytic-ia.vercel.app" class="proj-link secondary" target="_blank" rel="noopener">Demo →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 03 -->
       <div class="proj-card reveal">
         <div class="proj-card-top">
           <div class="proj-mockup">
@@ -397,7 +437,7 @@ reporte.to_excel(<span class="cs">'reporte.xlsx'</span>)</pre>
           <span class="proj-badge badge-freelance">Experiencia real</span>
         </div>
         <div class="proj-card-body">
-          <div class="proj-num">02</div>
+          <div class="proj-num">03</div>
           <div class="proj-title">Liga de Ciclismo de Bogotá</div>
           <div class="proj-desc">
             Gestión, limpieza y análisis de bases de datos de deportistas.
@@ -441,7 +481,7 @@ reporte.to_excel(<span class="cs">'reporte.xlsx'</span>)</pre>
           <span class="proj-badge badge-study">Proyecto estudio</span>
         </div>
         <div class="proj-card-body">
-          <div class="proj-num">03</div>
+          <div class="proj-num">04</div>
           <div class="proj-title">E-Commerce con Django</div>
           <div class="proj-desc">
             Plataforma de comercio electrónico completa: catálogo de productos,
@@ -486,7 +526,7 @@ app = Flask(__name__)
           <span class="proj-badge badge-study">Proyecto estudio</span>
         </div>
         <div class="proj-card-body">
-          <div class="proj-num">04</div>
+          <div class="proj-num">05</div>
           <div class="proj-title">Dashboard Analítico con Flask</div>
           <div class="proj-desc">
             Dashboard web construido con Flask y Python para visualización
@@ -531,7 +571,7 @@ app = Flask(__name__)
           <span class="proj-badge badge-study">Proyecto estudio</span>
         </div>
         <div class="proj-card-body">
-          <div class="proj-num">05</div>
+          <div class="proj-num">06</div>
           <div class="proj-title">App de Gestión con React</div>
           <div class="proj-desc">
             Aplicación frontend en React para gestión de registros con
@@ -571,7 +611,7 @@ app = Flask(__name__)
           <span class="proj-badge badge-personal">Personal</span>
         </div>
         <div class="proj-card-body">
-          <div class="proj-num">06</div>
+          <div class="proj-num">07</div>
           <div class="proj-title">Análisis de Ventas con SQL</div>
           <div class="proj-desc">
             Análisis exploratorio completo sobre dataset de ventas retail usando
@@ -616,7 +656,7 @@ top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pr
           <span class="proj-badge badge-freelance">Experiencia real</span>
         </div>
         <div class="proj-card-body">
-          <div class="proj-num">07</div>
+          <div class="proj-num">08</div>
           <div class="proj-title">Análisis de Campañas Digitales</div>
           <div class="proj-desc">
             Análisis de métricas de marketing digital para club deportivo
