@@ -116,6 +116,138 @@
       </div>
 
     </div>
+
+    <!-- ROBOT 3D -->
+    <div class="hero-robot" id="robot-container" aria-hidden="true">
+      <svg id="robot-svg" viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow-amber" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="bodyGrad" cx="40%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#242424"/>
+            <stop offset="100%" stop-color="#0e0e0e"/>
+          </radialGradient>
+          <radialGradient id="eyeGrad" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#fbbf24"/>
+            <stop offset="100%" stop-color="#e8a230"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Sombra suelo -->
+        <ellipse cx="160" cy="415" rx="72" ry="7" fill="#e8a230" opacity="0.07"/>
+
+        <!-- ── ROBOT ROOT (tilt cuerpo completo) ── -->
+        <g id="robot-root">
+
+          <!-- ── CUERPO + EXTREMIDADES ── -->
+          <g id="robot-body-group">
+
+            <!-- Brazo izquierdo -->
+            <rect x="50" y="192" width="34" height="88" rx="12" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+            <circle cx="67" cy="290" r="15" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+
+            <!-- Brazo derecho -->
+            <rect x="236" y="192" width="34" height="88" rx="12" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+            <circle cx="253" cy="290" r="15" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+
+            <!-- Cuerpo principal -->
+            <rect x="88" y="184" width="144" height="124" rx="18" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+
+            <!-- Pantalla pecho -->
+            <rect x="106" y="202" width="108" height="64" rx="9" fill="#080808" stroke="#e8a230" stroke-width="1"/>
+
+            <!-- Barras animadas dentro de la pantalla -->
+            <rect x="116" y="228" width="18" height="24" rx="3" fill="#e8a230" opacity="0.85">
+              <animate attributeName="height" values="24;12;24" dur="1.4s" repeatCount="indefinite"/>
+              <animate attributeName="y"      values="228;234;228" dur="1.4s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="142" y="218" width="18" height="34" rx="3" fill="#e8a230" opacity="0.65">
+              <animate attributeName="height" values="34;18;34" dur="1.9s" repeatCount="indefinite"/>
+              <animate attributeName="y"      values="218;226;218" dur="1.9s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="168" y="222" width="18" height="30" rx="3" fill="#e8a230" opacity="0.75">
+              <animate attributeName="height" values="30;8;30"   dur="1.1s" repeatCount="indefinite"/>
+              <animate attributeName="y"      values="222;236;222" dur="1.1s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="194" y="225" width="10" height="27" rx="3" fill="#e8a230" opacity="0.5">
+              <animate attributeName="height" values="27;14;27" dur="1.6s" repeatCount="indefinite"/>
+              <animate attributeName="y"      values="225;232;225" dur="1.6s" repeatCount="indefinite"/>
+            </rect>
+
+            <!-- Tornillos cuerpo -->
+            <circle cx="98"  cy="196" r="4" fill="#e8a230"/>
+            <circle cx="222" cy="196" r="4" fill="#e8a230"/>
+            <circle cx="98"  cy="300" r="4" fill="#e8a230"/>
+            <circle cx="222" cy="300" r="4" fill="#e8a230"/>
+
+            <!-- Cuello -->
+            <rect x="144" y="172" width="32" height="18" rx="6" fill="#1a1a1a" stroke="#e8a230" stroke-width="1"/>
+
+            <!-- Pierna izquierda -->
+            <rect x="106" y="307" width="44" height="72" rx="10" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+            <!-- Pie izquierdo -->
+            <rect x="96"  y="368" width="62" height="22" rx="9" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+
+            <!-- Pierna derecha -->
+            <rect x="170" y="307" width="44" height="72" rx="10" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+            <!-- Pie derecho -->
+            <rect x="162" y="368" width="62" height="22" rx="9" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+          </g>
+
+          <!-- ── CABEZA (rota más que el cuerpo) ── -->
+          <g id="robot-head-group">
+
+            <!-- Antena base -->
+            <rect x="155" y="46" width="10" height="30" rx="4" fill="#e8a230"/>
+            <!-- Bola antena con pulso -->
+            <circle cx="160" cy="38" r="11" fill="#e8a230" filter="url(#glow-amber)">
+              <animate attributeName="r"       values="11;14;11" dur="1.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="1;0.5;1"  dur="1.6s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Onda antena -->
+            <circle cx="160" cy="38" r="20" fill="none" stroke="#e8a230" stroke-width="1" opacity="0.25">
+              <animate attributeName="r"       values="14;26;14" dur="1.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.25;0;0.25" dur="1.6s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Cabeza -->
+            <rect x="96" y="58" width="128" height="102" rx="20" fill="url(#bodyGrad)" stroke="#e8a230" stroke-width="1.5"/>
+
+            <!-- Cucuás ojos -->
+            <circle cx="138" cy="100" r="24" fill="#080808" stroke="#e8a230" stroke-width="1"/>
+            <circle cx="182" cy="100" r="24" fill="#080808" stroke="#e8a230" stroke-width="1"/>
+            <!-- Anillo interior ojo -->
+            <circle cx="138" cy="100" r="19" fill="none" stroke="#e8a230" stroke-width="0.8" opacity="0.4"/>
+            <circle cx="182" cy="100" r="19" fill="none" stroke="#e8a230" stroke-width="0.8" opacity="0.4"/>
+
+            <!-- Pupilas (JS las mueve) -->
+            <circle id="pupil-left"        cx="138" cy="100" r="11" fill="url(#eyeGrad)" filter="url(#glow-amber)"/>
+            <circle id="pupil-left-inner"  cx="138" cy="100" r="4.5" fill="#fff" opacity="0.9"/>
+            <circle id="pupil-right"       cx="182" cy="100" r="11" fill="url(#eyeGrad)" filter="url(#glow-amber)"/>
+            <circle id="pupil-right-inner" cx="182" cy="100" r="4.5" fill="#fff" opacity="0.9"/>
+
+            <!-- Boca / speaker -->
+            <rect x="116" y="136" width="88" height="13" rx="7" fill="#080808" stroke="#e8a230" stroke-width="1"/>
+            <circle cx="130" cy="142" r="2.5" fill="#e8a230" opacity="0.7"/>
+            <circle cx="144" cy="142" r="2.5" fill="#e8a230" opacity="0.7"/>
+            <circle cx="158" cy="142" r="2.5" fill="#e8a230" opacity="0.7"/>
+            <circle cx="172" cy="142" r="2.5" fill="#e8a230" opacity="0.7"/>
+            <circle cx="186" cy="142" r="2.5" fill="#e8a230" opacity="0.7"/>
+            <circle cx="200" cy="142" r="2.5" fill="#e8a230" opacity="0.7"/>
+
+            <!-- Tornillos cabeza -->
+            <circle cx="105" cy="68"  r="4" fill="#e8a230"/>
+            <circle cx="215" cy="68"  r="4" fill="#e8a230"/>
+            <circle cx="105" cy="150" r="4" fill="#e8a230"/>
+            <circle cx="215" cy="150" r="4" fill="#e8a230"/>
+          </g>
+
+        </g>
+      </svg>
+    </div>
+
   </section>
 
 
@@ -861,6 +993,7 @@ top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pr
   <script src="js/animations.js"></script>
   <script src="js/ticker.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/robot.js"></script>
 
 </body>
 </html>

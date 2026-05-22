@@ -20,13 +20,47 @@
    ============================================================ */
 
 #hero {
-  min-height:  100vh;            /* Ocupa toda la pantalla              */
-  display:     flex;
-  align-items: center;
-  padding:     0 var(--space-xl);
-  padding-top: 110px;            /* Espacio para la nav fija            */
-  position:    relative;
-  overflow:    hidden;
+  min-height:       100vh;
+  display:          flex;
+  align-items:      center;
+  justify-content:  space-between;
+  gap:              40px;
+  padding:          0 var(--space-xl);
+  padding-top:      110px;
+  position:         relative;
+  overflow:         hidden;
+}
+
+/* Robot flotante en el hero */
+.hero-robot {
+  flex-shrink:  0;
+  width:        clamp(180px, 22vw, 300px);
+  position:     relative;
+  z-index:      1;
+  animation:    robotFloat 3.2s ease-in-out infinite;
+  filter:       drop-shadow(0 0 24px rgba(232, 162, 48, 0.18));
+}
+
+#robot-svg {
+  width:  100%;
+  height: auto;
+  display: block;
+}
+
+/* Grupos SVG con transform-box para que rotate funcione desde el centro correcto */
+#robot-root {
+  transform-origin: 160px 420px; /* rota desde los pies */
+  transform-box:    fill-box;
+}
+
+#robot-head-group {
+  transform-origin: 160px 170px; /* rota desde el cuello */
+  transform-box:    fill-box;
+}
+
+@keyframes robotFloat {
+  0%,  100% { transform: translateY(0px);   }
+  50%        { transform: translateY(-16px); }
 }
 
 /* Grid de líneas en el fondo — solo decorativo */
