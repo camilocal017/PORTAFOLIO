@@ -106,7 +106,7 @@
           <div class="hstat-l">Años cod.</div>
         </div>
         <div class="hstat">
-          <div class="hstat-n" data-count="2">0</div>
+          <div class="hstat-n" data-count="9">0</div>
           <div class="hstat-l">Proyectos</div>
         </div>
         <div class="hstat">
@@ -600,6 +600,54 @@ app = Flask(__name__)
             <span class="stag project">SQL</span>
             <span class="stag project">Power BI</span>
             <span class="stag project">Excel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO TIENDA DE BARRIO -->
+      <div class="proj-card reveal d2">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm">// finances.ts — break-even</span>
+<span class="ck">export function</span> buildFinancialSummary(
+  input: FinancialInput
+): FinancialSummary {
+  <span class="ck">const</span> grossProfit =
+    input.monthRevenue - input.cogs
+  <span class="ck">const</span> marginPct =
+    grossProfit / input.monthRevenue * <span class="cs">100</span>
+  <span class="ck">const</span> breakEven =
+    input.fixedExpenses / (marginPct / <span class="cs">100</span>)
+  <span class="ck">return</span> { grossProfit, marginPct,
+    breakEvenReached:
+      input.monthRevenue >= breakEven }
+}</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://tienda-system.vercel.app" class="proj-overlay-btn" target="_blank" rel="noopener">Ver Demo →</a>
+          </div>
+          <span class="proj-badge badge-freelance">Nuevo</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">09</div>
+          <div class="proj-title">TiendaSistema — Gestión para Tienda de Barrio</div>
+          <div class="proj-desc">
+            Sistema completo pensado para la tienda de barrio real. Punto de venta,
+            inventario, proveedores, turnos y módulo financiero inteligente: gastos fijos,
+            punto de equilibrio, utilidad bruta y alertas automáticas. No es solo un
+            sistema — es un acompañante financiero para negocios que nunca han tenido orden.
+            89 tests automatizados. Desplegado en Vercel + Neon PostgreSQL.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">Next.js 16</span>
+            <span class="stag project">Prisma 7</span>
+            <span class="stag project">PostgreSQL</span>
+            <span class="stag project">NextAuth v5</span>
+            <span class="stag project">Tailwind CSS</span>
+            <span class="stag project">Vitest</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://tienda-system.vercel.app" class="proj-link secondary" target="_blank" rel="noopener">Demo →</a>
           </div>
         </div>
       </div>
