@@ -1,0 +1,108 @@
+/* ══════════════════════════════════════════
+   Astronauta compañero — fijo en pantalla
+   ══════════════════════════════════════════ */
+
+#astronaut-companion {
+  position:       fixed;
+  bottom:         28px;
+  right:          28px;
+  z-index:        9999;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  cursor:         pointer;
+  user-select:    none;
+}
+
+/* ── Personaje ── */
+#companion-char {
+  width:      88px;
+  animation:  astro-float 3.2s ease-in-out infinite;
+  filter:     drop-shadow(0 6px 18px rgba(232,162,48,0.22));
+  transition: transform 0.25s ease;
+}
+
+@keyframes astro-float {
+  0%,100% { transform: translateY(0px)   rotate(0deg);   }
+  30%     { transform: translateY(-9px)  rotate(-2deg);  }
+  70%     { transform: translateY(-5px)  rotate(1.5deg); }
+}
+
+/* ── Hover: escala + pausa flotación ── */
+#astronaut-companion:hover #companion-char {
+  animation: astro-hover 0.5s ease-in-out 2;
+  transform: scale(1.08);
+}
+@keyframes astro-hover {
+  0%,100% { transform: scale(1.08) rotate(0deg);  }
+  25%     { transform: scale(1.08) rotate(-8deg); }
+  75%     { transform: scale(1.08) rotate(8deg);  }
+}
+
+/* ── Burbuja de diálogo ── */
+#companion-bubble {
+  background:    rgba(10, 10, 16, 0.94);
+  border:        1px solid rgba(232,162,48,0.45);
+  border-radius: 14px;
+  padding:       9px 15px;
+  margin-bottom: 12px;
+  font-family:   var(--font-mono, monospace);
+  font-size:     11.5px;
+  letter-spacing:0.5px;
+  color:         #f0e8d8;
+  white-space:   nowrap;
+  opacity:       1;
+  transform:     translateY(0);
+  transition:    opacity 0.35s ease, transform 0.35s ease;
+  position:      relative;
+  pointer-events:none;
+}
+
+/* Cola de la burbuja */
+#companion-bubble::after {
+  content:      '';
+  position:     absolute;
+  bottom:       -7px;
+  left:         50%;
+  transform:    translateX(-50%);
+  border:       7px solid transparent;
+  border-top-color: rgba(232,162,48,0.45);
+  border-bottom: 0;
+}
+
+#companion-bubble.hidden {
+  opacity:        0;
+  transform:      translateY(8px);
+  pointer-events: none;
+}
+
+/* ── Pupilas SVG: transición suave ── */
+#pupil-l, #pupil-r {
+  transition: cx 0.08s ease, cy 0.08s ease;
+}
+
+/* ── Párpados (modo sleep) ── */
+.eye-lid {
+  transform-origin: 50% 0%;
+  transform:  scaleY(0);
+  transition: transform 0.45s ease;
+}
+#astronaut-companion.sleeping .eye-lid {
+  transform: scaleY(1);
+}
+
+/* Flotación más lenta durmiendo */
+#astronaut-companion.sleeping #companion-char {
+  animation:  astro-sleep 5s ease-in-out infinite;
+  opacity:    0.82;
+  filter:     drop-shadow(0 4px 10px rgba(232,162,48,0.10));
+}
+@keyframes astro-sleep {
+  0%,100% { transform: translateY(0px) rotate(-3deg); }
+  50%     { transform: translateY(-4px) rotate(-3deg); }
+}
+
+/* ── Ocultar en móvil ── */
+@media (max-width: 768px) {
+  #astronaut-companion { display: none; }
+}

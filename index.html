@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/robot.css">
+  <link rel="stylesheet" href="css/astronaut.css">
 </head>
 <body>
 
@@ -835,5 +836,79 @@ top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pr
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="js/galaxy3d.v2.js"></script>
 
+  <!-- ── Astronauta compañero ── -->
+  <div id="astronaut-companion">
+    <div id="companion-bubble" class="hidden">
+      <span id="bubble-text"></span>
+    </div>
+
+    <div id="companion-char">
+      <svg viewBox="0 0 80 122" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Casco -->
+        <circle cx="40" cy="34" r="27" fill="#eceff4" stroke="#cfd5e3" stroke-width="1.5"/>
+
+        <!-- Visor oscuro -->
+        <ellipse cx="40" cy="37" rx="17" ry="13" fill="#111827"/>
+        <!-- Reflejo visor -->
+        <ellipse cx="33" cy="29" rx="5" ry="3.2" fill="rgba(255,255,255,0.13)"
+                 transform="rotate(-28,33,29)"/>
+
+        <!-- Ojos (iris ámbar) -->
+        <circle cx="30" cy="39" r="5" fill="#e8a230"/>
+        <circle cx="50" cy="39" r="5" fill="#e8a230"/>
+
+        <!-- Pupilas (se mueven con JS) -->
+        <circle id="astro-pupil-l" cx="30" cy="39" r="2.4" fill="#fff"/>
+        <circle id="astro-pupil-r" cx="50" cy="39" r="2.4" fill="#fff"/>
+
+        <!-- Brillo de los ojos -->
+        <circle cx="32" cy="37" r="0.9" fill="rgba(255,255,255,0.8)"/>
+        <circle cx="52" cy="37" r="0.9" fill="rgba(255,255,255,0.8)"/>
+
+        <!-- Párpados (visibles solo en sleep — CSS scaleY) -->
+        <rect class="eye-lid" x="24" y="34" width="12" height="10" rx="2" fill="#111827"/>
+        <rect class="eye-lid" x="44" y="34" width="12" height="10" rx="2" fill="#111827"/>
+
+        <!-- Collar / cuello -->
+        <rect x="27" y="58" width="26" height="7" rx="3.5" fill="#c8cdd8"/>
+
+        <!-- Traje (cuerpo) -->
+        <rect x="16" y="63" width="48" height="46" rx="13" fill="#eceff4"/>
+
+        <!-- Panel de control central -->
+        <rect x="28" y="71" width="24" height="18" rx="4" fill="#1f2937"/>
+        <!-- Reactor ámbar -->
+        <circle cx="40" cy="80" r="5.5" fill="#e8a230" opacity="0.92"/>
+        <circle cx="40" cy="80" r="2.8" fill="#ffe090"/>
+        <!-- Líneas panel -->
+        <rect x="30" y="88" width="20" height="1.5" rx="0.75" fill="#e8a230" opacity="0.45"/>
+
+        <!-- Detalles laterales del traje -->
+        <rect x="18" y="72" width="8" height="2.5" rx="1.2" fill="#e8a230" opacity="0.55"/>
+        <rect x="54" y="72" width="8" height="2.5" rx="1.2" fill="#e8a230" opacity="0.55"/>
+
+        <!-- Brazo izquierdo -->
+        <rect x="4"  y="65" width="13" height="32" rx="6.5" fill="#e0e4ec"/>
+        <!-- Guante izquierdo -->
+        <circle cx="10.5" cy="99" r="7.5" fill="#c8cdd8"/>
+
+        <!-- Brazo derecho -->
+        <rect x="63" y="65" width="13" height="32" rx="6.5" fill="#e0e4ec"/>
+        <!-- Guante derecho -->
+        <circle cx="69.5" cy="99" r="7.5" fill="#c8cdd8"/>
+
+        <!-- Piernas -->
+        <rect x="21" y="107" width="15" height="12" rx="5.5" fill="#c8cdd8"/>
+        <rect x="44" y="107" width="15" height="12" rx="5.5" fill="#c8cdd8"/>
+
+        <!-- Tanque de oxígeno (espalda — visible de lado) -->
+        <rect x="61" y="66" width="7" height="20" rx="3" fill="#d5d9e4" opacity="0.8"/>
+
+      </svg>
+    </div>
+  </div>
+
+  <script src="js/astronaut.js"></script>
 </body>
 </html>
