@@ -1,19 +1,23 @@
 /* ── Galaxia Three.js — contenedor hero ── */
 .hero-robot {
   flex-shrink: 0;
-  margin-top:   60px;
+  margin-top:   50px;
   margin-right: clamp(0px, 2vw, 40px);
-  width:    clamp(260px, 32vw, 430px);
-  height:   clamp(280px, 50vh, 480px);
+  width:    clamp(300px, 38vw, 500px);
+  height:   clamp(300px, 56vh, 540px);
   position: relative;
   z-index:  1;
-  overflow: visible;
+  overflow: visible;           /* las partículas pueden salir del cuadro */
 }
 
 #robot-canvas {
   width:   100% !important;
   height:  100% !important;
   display: block;
+  /* Escala el canvas un 20% más grande → los bordes sangran fuera del container
+     sin afectar la lógica interna del raycaster */
+  transform:        scale(1.20);
+  transform-origin: center center;
 }
 
 @media (max-width: 900px) {

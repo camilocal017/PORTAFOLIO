@@ -18,9 +18,9 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const scene  = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(56, W / H, 0.1, 100);
-    camera.position.set(0, 2.2, 7.5);
-    camera.lookAt(0, -0.55, 0);
+    const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 100);
+    camera.position.set(0, 2.0, 6.2);   // más cerca → galaxia llena más el canvas
+    camera.lookAt(0, -0.45, 0);
 
     // ════════════════════════════════════════════
     //  GALAXIA
@@ -244,11 +244,11 @@
       halo.scale.set(2.2*p, 2.2*p, 1);
 
       // Parallax suave de cámara
-      camX += (mX * 0.42 - camX) * 0.05;
-      camY += (2.2 + mY * 0.32 - camY) * 0.05;
+      camX += (mX * 0.40 - camX) * 0.05;
+      camY += (2.0 + mY * 0.30 - camY) * 0.05;
       camera.position.x = camX;
       camera.position.y = camY;
-      camera.lookAt(0, -0.55, 0);
+      camera.lookAt(0, -0.45, 0);
 
       renderer.render(scene, camera);
     }
