@@ -1,16 +1,21 @@
 /* ── Robot Three.js container ── */
 .hero-robot {
   flex-shrink: 0;
-  width:       clamp(240px, 28vw, 360px);
-  height:      clamp(400px, 55vh, 580px);
-  position:    relative;
-  z-index:     1;
+  width:    clamp(260px, 30vw, 400px);
+  height:   clamp(480px, 64vh, 660px);
+  position: relative;
+  z-index:  1;
+  overflow: visible;          /* nunca cortar la cabeza */
+  display:  flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #robot-canvas {
-  width:  100% !important;
-  height: 100% !important;
+  width:   100% !important;
+  height:  100% !important;
   display: block;
+  overflow: visible;
 }
 
 @media (max-width: 900px) {
