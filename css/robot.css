@@ -1,21 +1,17 @@
-/* ── Robot Three.js container ── */
+/* ── Galaxia Three.js — contenedor hero ── */
 .hero-robot {
   flex-shrink: 0;
-  width:    clamp(260px, 30vw, 400px);
-  height:   clamp(480px, 64vh, 660px);
+  width:    clamp(280px, 35vw, 480px);
+  height:   clamp(320px, 60vh, 580px);
   position: relative;
   z-index:  1;
-  overflow: visible;          /* nunca cortar la cabeza */
-  display:  flex;
-  align-items: center;
-  justify-content: center;
+  overflow: visible;
 }
 
 #robot-canvas {
   width:   100% !important;
   height:  100% !important;
   display: block;
-  overflow: visible;
 }
 
 @media (max-width: 900px) {
