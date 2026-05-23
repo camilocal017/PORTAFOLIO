@@ -50,17 +50,17 @@
       let x, y, z, cr, cg, cb;
       shimmerPhase[i] = Math.random() * Math.PI * 2;
 
-      if (i < COUNT * 0.12) {                            // núcleo
-        const r     = Math.pow(Math.random(), 2) * 0.80;
+      if (i < COUNT * 0.04) {                            // núcleo muy reducido
+        const r     = Math.pow(Math.random(), 2) * 0.40; // radio menor
         const theta = Math.random() * Math.PI * 2;
         const phi   = Math.acos(2 * Math.random() - 1);
         x = r * Math.sin(phi) * Math.cos(theta);
-        y = r * Math.sin(phi) * Math.sin(theta) * 0.28;
+        y = r * Math.sin(phi) * Math.sin(theta) * 0.20;
         z = r * Math.cos(phi);
-        const m = Math.random();
-        cr = lc(WHITE[0], AMBER[0], m);
-        cg = lc(WHITE[1], AMBER[1], m);
-        cb = lc(WHITE[2], AMBER[2], m);
+        // Colores más tenues para que no saturen con blending aditivo
+        cr = AMBER[0] * 0.55;
+        cg = AMBER[1] * 0.55;
+        cb = AMBER[2] * 0.55;
       } else {                                            // brazos
         const arm   = i % ARMS;
         const t     = Math.pow(Math.random(), 0.52);
@@ -107,21 +107,7 @@
     const galaxy = new THREE.Points(geo, mat);
     scene.add(galaxy);
 
-    // Halo central
-    const haloCv = document.createElement('canvas');
-    haloCv.width = haloCv.height = 128;
-    const hCtx = haloCv.getContext('2d');
-    const grad  = hCtx.createRadialGradient(64,64,0,64,64,64);
-    grad.addColorStop(0,   'rgba(255,215,90,0.30)');
-    grad.addColorStop(0.35,'rgba(232,162,48,0.08)');
-    grad.addColorStop(1,   'rgba(0,0,0,0)');
-    hCtx.fillStyle = grad; hCtx.fillRect(0,0,128,128);
-    const halo = new THREE.Sprite(new THREE.SpriteMaterial({
-      map: new THREE.CanvasTexture(haloCv),
-      blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
-    }));
-    halo.scale.set(1.1, 1.1, 1);
-    scene.add(halo);
+    // (halo eliminado — el blending aditivo del núcleo ya lo saturaba)
 
     // ════════════════════════════════════════════
     //  CURSOR — escucha en #hero completo
@@ -221,9 +207,6 @@
 
       geo.attributes.position.needsUpdate = true;
 
-      // Halo pulsa
-      const p = 1 + Math.sin(time * 1.2) * 0.06;
-      halo.scale.set(1.1*p, 1.1*p, 1);
 
       // Parallax suave
       camX += (mX * 0.35 - camX) * 0.04;
