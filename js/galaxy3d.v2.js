@@ -134,6 +134,66 @@
       return { mesh, r: d.r, speed: d.speed, angle: Math.random()*Math.PI*2 };
     });
 
+    // ── Cohete ───────────────────────────────────
+    const rocketGroup = new THREE.Group();
+    scene.add(rocketGroup);
+
+    const mW = new THREE.MeshPhongMaterial({ color: 0xeeeeee, specular: 0xffffff, shininess: 180 });
+    const mD = new THREE.MeshPhongMaterial({ color: 0x222222, shininess: 60 });
+    const mE = new THREE.MeshPhongMaterial({ color: 0xe8a230, emissive: 0xe8a230, emissiveIntensity: 1.2 });
+
+    // Cuerpo
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.028, 0.18, 8), mW);
+    rocketGroup.add(body);
+
+    // Nariz (cono)
+    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.028, 0.10, 8), mW);
+    nose.position.y = 0.14;
+    rocketGroup.add(nose);
+
+    // Ventana
+    const window_ = new THREE.Mesh(new THREE.SphereGeometry(0.016, 8, 8), mD);
+    window_.position.y = 0.06;
+    window_.position.z = 0.025;
+    rocketGroup.add(window_);
+
+    // Aletas (3 fins)
+    for (let f = 0; f < 3; f++) {
+      const fin = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.055, 0.045), mD);
+      const a = (f / 3) * Math.PI * 2;
+      fin.position.y  = -0.07;
+      fin.position.x  = Math.cos(a) * 0.032;
+      fin.position.z  = Math.sin(a) * 0.032;
+      fin.rotation.y  = a;
+      rocketGroup.add(fin);
+    }
+
+    // Motor (esfera brillante en la cola)
+    const engine = new THREE.Mesh(new THREE.SphereGeometry(0.022, 8, 8), mE);
+    engine.position.y = -0.10;
+    rocketGroup.add(engine);
+
+    // Luz del motor
+    const engineLight = new THREE.PointLight(0xe8a230, 1.2, 1.2);
+    engineLight.position.y = -0.12;
+    rocketGroup.add(engineLight);
+
+    // Trayectoria: órbita elíptica inclinada ~25° respecto al disco
+    // Rodea el sistema solar entre los anillos exteriores
+    const ROCKET_RX   = 4.2;   // radio X de la órbita
+    const ROCKET_RZ   = 3.4;   // radio Z (órbita elíptica)
+    const ROCKET_TILT = 0.42;  // inclinación de la órbita (rad)
+    const ROCKET_SPD  = 0.22;  // velocidad angular
+
+    const _rPos  = new THREE.Vector3();
+    const _rNext = new THREE.Vector3();
+
+    function rocketPos(t, out) {
+      out.x =  Math.cos(t) * ROCKET_RX;
+      out.y =  Math.sin(t) * Math.sin(ROCKET_TILT) * ROCKET_RZ;
+      out.z =  Math.sin(t) * Math.cos(ROCKET_TILT) * ROCKET_RZ;
+    }
+
     // ── Cursor ────────────────────────────────────
     let mX = 0, mY = 0, isHovering = false;
     const raycaster     = new THREE.Raycaster();
@@ -177,6 +237,17 @@
         p.mesh.position.z = Math.sin(p.angle) * p.r;
         p.mesh.rotation.y += 0.02;
       });
+
+      // Cohete: posición + orientación hacia la dirección de viaje
+      const rt = time * ROCKET_SPD;
+      rocketPos(rt,        _rPos);
+      rocketPos(rt + 0.04, _rNext);
+      rocketGroup.position.copy(_rPos);
+      // Apunta hacia adelante (eje Y del cohete = dirección de movimiento)
+      rocketGroup.lookAt(_rNext);
+      rocketGroup.rotateX(Math.PI / 2);  // ajuste: nose arriba = +Y en Three.js
+      // Motor parpadea
+      engineLight.intensity = 1.0 + Math.sin(time * 18) * 0.35;
 
       let gotHit = false, lx = 0, lz = 0;
       if (isHovering) {
