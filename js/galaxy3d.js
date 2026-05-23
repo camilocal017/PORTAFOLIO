@@ -112,15 +112,15 @@
     haloCv.width = haloCv.height = 128;
     const hCtx = haloCv.getContext('2d');
     const grad  = hCtx.createRadialGradient(64,64,0,64,64,64);
-    grad.addColorStop(0,   'rgba(255,215,90,0.50)');
-    grad.addColorStop(0.35,'rgba(232,162,48,0.15)');
+    grad.addColorStop(0,   'rgba(255,215,90,0.30)');
+    grad.addColorStop(0.35,'rgba(232,162,48,0.08)');
     grad.addColorStop(1,   'rgba(0,0,0,0)');
     hCtx.fillStyle = grad; hCtx.fillRect(0,0,128,128);
     const halo = new THREE.Sprite(new THREE.SpriteMaterial({
       map: new THREE.CanvasTexture(haloCv),
       blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
     }));
-    halo.scale.set(3.0, 3.0, 1);
+    halo.scale.set(1.1, 1.1, 1);
     scene.add(halo);
 
     // ════════════════════════════════════════════
@@ -223,7 +223,7 @@
 
       // Halo pulsa
       const p = 1 + Math.sin(time * 1.2) * 0.06;
-      halo.scale.set(3.0*p, 3.0*p, 1);
+      halo.scale.set(1.1*p, 1.1*p, 1);
 
       // Parallax suave
       camX += (mX * 0.35 - camX) * 0.04;
