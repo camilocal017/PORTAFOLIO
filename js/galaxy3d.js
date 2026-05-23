@@ -22,8 +22,8 @@
     const scene  = new THREE.Scene();
 
     // Cámara más alta → galaxia se ve como disco de fondo
-    const camera = new THREE.PerspectiveCamera(68, W / H, 0.1, 100);
-    camera.position.set(0, 3.8, 4.5);
+    const camera = new THREE.PerspectiveCamera(52, W / H, 0.1, 100);
+    camera.position.set(0, 6.5, 7.5);
     camera.lookAt(0, 0, 0);
 
     // ════════════════════════════════════════════
@@ -209,8 +209,8 @@
 
 
       // Parallax suave
-      camX += (mX * 0.35 - camX) * 0.04;
-      camY += (3.8 + mY * 0.25 - camY) * 0.04;
+      camX += (mX * 0.30 - camX) * 0.04;
+      camY += (6.5 + mY * 0.20 - camY) * 0.04;
       camera.position.x = camX;
       camera.position.y = camY;
       camera.lookAt(0, 0, 0);
