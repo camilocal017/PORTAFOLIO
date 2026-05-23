@@ -1,8 +1,6 @@
 /**
- * galaxy3d.js — Galaxia espiral como FONDO del hero
- * Cubre todo el #hero, detrás del texto.
- * Cursor: escucha en #hero completo (no bloquea clics del texto).
- * Raycaster real: intersección con el plano de la galaxia.
+ * galaxy3d.js — Disco galáctico visto de perfil (estilo protoplanetario)
+ * Cámara baja, disco muy plano e inclinado → aspecto de imagen astronómica.
  */
 (function () {
   const container   = document.getElementById('robot-container');
@@ -14,77 +12,91 @@
     const W = container.clientWidth  || window.innerWidth;
     const H = container.clientHeight || window.innerHeight;
 
-    // ── Renderer ──────────────────────────────────
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
     renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const scene  = new THREE.Scene();
+    const scene = new THREE.Scene();
 
-    // Cámara más alta → galaxia se ve como disco de fondo
+    // ── Cámara: ángulo bajo, casi a nivel del disco ──────────
+    // Elevation ≈ 15° sobre el plano del disco → aspecto protoplanetario
     const camera = new THREE.PerspectiveCamera(52, W / H, 0.1, 100);
-    camera.position.set(0, 6.5, 7.5);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(0, 2.8, 10.5);
+    camera.lookAt(0, 0.4, 0);
 
     // ════════════════════════════════════════════
-    //  GALAXIA — más grande para cubrir el fondo
+    //  GALAXIA — disco muy plano, 4 brazos, más espirales
     // ════════════════════════════════════════════
-    const COUNT  = 8000;
-    const RADIUS = 6.0;
-    const ARMS   = 3;
-    const SPIN   = 1.75;
-    const SPREAD = 0.32;
+    const COUNT  = 9000;
+    const RADIUS = 5.5;
+    const ARMS   = 4;      // más brazos = más "anillos" al verlo de perfil
+    const SPIN   = 2.2;    // espirales más cerradas
+    const SPREAD = 0.22;   // brazos más delgados
 
     const positions    = new Float32Array(COUNT * 3);
     const origPos      = new Float32Array(COUNT * 3);
     const colors       = new Float32Array(COUNT * 3);
     const shimmerPhase = new Float32Array(COUNT);
 
-    const WHITE = [1.00, 0.97, 0.90];
-    const AMBER = [0.91, 0.64, 0.19];
-    const DEEP  = [0.75, 0.18, 0.02];
-    const COOL  = [0.55, 0.72, 1.00];
+    // Paleta: dorado brillante → ámbar → naranja → óxido apagado
+    const CORE  = [1.00, 0.90, 0.50];   // amarillo-dorado (núcleo)
+    const AMBER = [0.91, 0.60, 0.12];   // ámbar medio
+    const RUST  = [0.70, 0.22, 0.02];   // naranja óxido (bordes)
+    const COOL  = [0.50, 0.65, 1.00];   // azul-blanco (estrellas frías)
     const lc    = (a, b, t) => a + (b - a) * t;
 
     for (let i = 0; i < COUNT; i++) {
       let x, y, z, cr, cg, cb;
       shimmerPhase[i] = Math.random() * Math.PI * 2;
 
-      if (i < COUNT * 0.04) {                            // núcleo muy reducido
-        const r     = Math.pow(Math.random(), 2) * 0.40; // radio menor
+      // ── Núcleo (solo 2 %, muy pequeño y tenue) ──
+      if (i < COUNT * 0.02) {
+        const r     = Math.pow(Math.random(), 3) * 0.22;
         const theta = Math.random() * Math.PI * 2;
-        const phi   = Math.acos(2 * Math.random() - 1);
-        x = r * Math.sin(phi) * Math.cos(theta);
-        y = r * Math.sin(phi) * Math.sin(theta) * 0.20;
-        z = r * Math.cos(phi);
-        // Colores más tenues para que no saturen con blending aditivo
-        cr = AMBER[0] * 0.55;
-        cg = AMBER[1] * 0.55;
-        cb = AMBER[2] * 0.55;
-      } else {                                            // brazos
-        const arm   = i % ARMS;
-        const t     = Math.pow(Math.random(), 0.52);
-        const r     = 0.5 + t * RADIUS;
-        const angle = t * Math.PI * 4 * SPIN + (arm / ARMS) * Math.PI * 2;
-        const scat  = SPREAD * (0.3 + t * 0.7);
-        x = Math.cos(angle) * r + (Math.random() - 0.5) * scat * r * 0.5;
-        y = (Math.random() - 0.5) * 0.20 * (1 - t * 0.80);
-        z = Math.sin(angle) * r + (Math.random() - 0.5) * scat * r * 0.5;
+        x = r * Math.cos(theta);
+        y = (Math.random() - 0.5) * 0.04;
+        z = r * Math.sin(theta);
+        cr = CORE[0] * 0.45;
+        cg = CORE[1] * 0.45;
+        cb = CORE[2] * 0.45;
 
-        const ratio = r / RADIUS;
-        if (Math.random() < 0.05) {
+      // ── Brazos espirales (disco muy plano) ──────
+      } else {
+        const arm   = i % ARMS;
+        const t     = Math.pow(Math.random(), 0.50);
+        const r     = 0.30 + t * RADIUS;
+        const angle = t * Math.PI * 4 * SPIN + (arm / ARMS) * Math.PI * 2;
+        const scat  = SPREAD * (0.2 + t * 0.8);
+
+        x = Math.cos(angle) * r + (Math.random() - 0.5) * scat * r * 0.45;
+        // Disco MUY plano: dispersión vertical mínima
+        y = (Math.random() - 0.5) * 0.055 * (1 - t * 0.85);
+        z = Math.sin(angle) * r + (Math.random() - 0.5) * scat * r * 0.45;
+
+        const ratio = r / RADIUS;   // 0 → 1
+
+        if (Math.random() < 0.04) {
+          // Estrellas frías azules (puntitos de acento)
           cr = COOL[0]; cg = COOL[1]; cb = COOL[2];
-        } else if (ratio < 0.40) {
-          const m = ratio / 0.40;
-          cr = lc(WHITE[0], AMBER[0], m);
-          cg = lc(WHITE[1], AMBER[1], m);
-          cb = lc(WHITE[2], AMBER[2], m);
+        } else if (ratio < 0.30) {
+          // Interior dorado
+          const m = ratio / 0.30;
+          cr = lc(CORE[0],  AMBER[0], m);
+          cg = lc(CORE[1],  AMBER[1], m);
+          cb = lc(CORE[2],  AMBER[2], m);
+        } else if (ratio < 0.65) {
+          // Medio ámbar
+          const m = (ratio - 0.30) / 0.35;
+          cr = lc(AMBER[0], RUST[0], m);
+          cg = lc(AMBER[1], RUST[1], m);
+          cb = lc(AMBER[2], RUST[2], m);
         } else {
-          const m    = (ratio - 0.40) / 0.60;
-          const fade = 1 - Math.max(0, (ratio - 0.68) / 0.32);
-          cr = lc(AMBER[0], DEEP[0], m) * fade;
-          cg = lc(AMBER[1], DEEP[1], m) * fade;
-          cb = lc(AMBER[2], DEEP[2], m) * fade;
+          // Bordes: óxido que se desvanece
+          const m    = (ratio - 0.65) / 0.35;
+          const fade = 1 - Math.max(0, (ratio - 0.75) / 0.25);
+          cr = RUST[0] * (1 - m * 0.4) * fade;
+          cg = RUST[1] * (1 - m * 0.6) * fade;
+          cb = RUST[2] * fade;
         }
       }
 
@@ -98,20 +110,20 @@
     geo.setAttribute('color',    new THREE.BufferAttribute(colors,    3));
 
     const mat = new THREE.PointsMaterial({
-      size: 0.038, vertexColors: true,
+      size: 0.032, vertexColors: true,
       blending: THREE.AdditiveBlending,
-      transparent: true, opacity: 0.72,   // semi-transparente → texto legible
+      transparent: true, opacity: 0.80,
       depthWrite: false, sizeAttenuation: true
     });
 
     const galaxy = new THREE.Points(geo, mat);
+    // Inclinación inicial: casi de canto (1.25 rad ≈ 72°)
+    // El disco se ve de perfil → anillos visibles como en la imagen
+    galaxy.rotation.x = 1.25;
     scene.add(galaxy);
 
-    // (halo eliminado — el blending aditivo del núcleo ya lo saturaba)
-
     // ════════════════════════════════════════════
-    //  CURSOR — escucha en #hero completo
-    //  (pointer-events:none en canvas → clics del texto funcionan)
+    //  CURSOR
     // ════════════════════════════════════════════
     let mX = 0, mY = 0, isHovering = false;
 
@@ -122,10 +134,9 @@
     const planeNormal = new THREE.Vector3();
     const galPlane    = new THREE.Plane();
 
-    // Escuchar en el hero section (abarca texto + fondo)
     heroSection.addEventListener('mousemove', e => {
-      const rect = canvas.getBoundingClientRect();  // canvas = inset:0 del hero
-      mX = ((e.clientX - rect.left)  / rect.width)  * 2 - 1;
+      const rect = canvas.getBoundingClientRect();
+      mX =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
       mY = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
       isHovering = true;
     });
@@ -136,8 +147,8 @@
     // ════════════════════════════════════════════
     const vel      = new Float32Array(COUNT * 3);
     const CURSOR_R  = 0.75;
-    const CURSOR_R2 = CURSOR_R * CURSOR_R;  // se actualiza automático
-    const PUSH      = 0.32;
+    const CURSOR_R2 = CURSOR_R * CURSOR_R;
+    const PUSH      = 0.30;
     const SPRING    = 0.028;
     const DAMP      = 0.82;
 
@@ -145,19 +156,20 @@
     //  ANIMACIÓN
     // ════════════════════════════════════════════
     let time = 0;
-    let camX = 0, camY = 3.8;
+    let camX = 0, camY = 2.8;
 
     function animate() {
       requestAnimationFrame(animate);
       time += 0.007;
 
-      galaxy.rotation.y = time * 0.10;
-      galaxy.rotation.x = 0.38 + Math.sin(time * 0.06) * 0.04;
+      // Rotación Y lenta — el disco gira sobre su eje
+      galaxy.rotation.y  = time * 0.09;
+      // Tilt: casi estático, pequeña oscilación (0.03 rad)
+      galaxy.rotation.x  = 1.25 + Math.sin(time * 0.05) * 0.03;
 
-      // Raycaster: cursor → espacio local de la galaxia
+      // Raycaster
       let gotHit = false;
       let lx = 0, ly = 0, lz = 0;
-
       if (isHovering) {
         planeNormal.set(0, 1, 0).applyQuaternion(galaxy.quaternion);
         galPlane.setFromNormalAndCoplanarPoint(planeNormal, galaxy.position);
@@ -172,55 +184,47 @@
       }
 
       const pos = geo.attributes.position.array;
-
       for (let i = 0; i < COUNT; i++) {
         const ix = i*3, iy = ix+1, iz = ix+2;
 
         if (gotHit) {
-          const dx = pos[ix] - lx;
-          const dy = pos[iy] - ly;
-          const dz = pos[iz] - lz;
+          const dx = pos[ix]-lx, dy = pos[iy]-ly, dz = pos[iz]-lz;
           const d2 = dx*dx + dy*dy + dz*dz;
           if (d2 < CURSOR_R2 * 9) {
             const dist  = Math.sqrt(d2) || 0.001;
             const force = PUSH * Math.exp(-d2 / CURSOR_R2);
-            vel[ix] += (dx / dist) * force;
-            vel[iy] += (dy / dist) * force * 0.20;
-            vel[iz] += (dz / dist) * force;
+            vel[ix] += (dx/dist)*force;
+            vel[iy] += (dy/dist)*force*0.15;
+            vel[iz] += (dz/dist)*force;
           }
         }
 
-        vel[ix] += (origPos[ix] - pos[ix]) * SPRING;
-        vel[iy] += (origPos[iy] - pos[iy]) * SPRING;
-        vel[iz] += (origPos[iz] - pos[iz]) * SPRING;
-
+        vel[ix] += (origPos[ix]-pos[ix])*SPRING;
+        vel[iy] += (origPos[iy]-pos[iy])*SPRING;
+        vel[iz] += (origPos[iz]-pos[iz])*SPRING;
         vel[ix] *= DAMP; vel[iy] *= DAMP; vel[iz] *= DAMP;
         pos[ix] += vel[ix]; pos[iy] += vel[iy]; pos[iz] += vel[iz];
 
-        // Shimmer en reposo
         const moved = (pos[ix]-origPos[ix])*(pos[ix]-origPos[ix])
                     + (pos[iz]-origPos[iz])*(pos[iz]-origPos[iz]);
         if (moved < 0.004) {
-          pos[iy] = origPos[iy] + Math.sin(time * 2.6 + shimmerPhase[i]) * 0.009;
+          pos[iy] = origPos[iy] + Math.sin(time*2.5 + shimmerPhase[i]) * 0.007;
         }
       }
-
       geo.attributes.position.needsUpdate = true;
 
-
       // Parallax suave
-      camX += (mX * 0.30 - camX) * 0.04;
-      camY += (6.5 + mY * 0.20 - camY) * 0.04;
+      camX += (mX * 0.28 - camX) * 0.04;
+      camY += (2.8 + mY * 0.18 - camY) * 0.04;
       camera.position.x = camX;
       camera.position.y = camY;
-      camera.lookAt(0, 0, 0);
+      camera.lookAt(0, 0.4, 0);
 
       renderer.render(scene, camera);
     }
 
     animate();
 
-    // ── Resize ────────────────────────────────────
     window.addEventListener('resize', () => {
       const w = container.clientWidth  || window.innerWidth;
       const h = container.clientHeight || window.innerHeight;
