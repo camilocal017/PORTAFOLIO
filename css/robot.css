@@ -1,23 +1,21 @@
-/* ── Galaxia Three.js — contenedor hero ── */
+/* ── Galaxia — fondo del hero section ── */
 .hero-robot {
-  flex-shrink: 0;
-  margin-top:   50px;
-  margin-right: clamp(0px, 2vw, 40px);
-  width:    clamp(300px, 38vw, 500px);
-  height:   clamp(300px, 56vh, 540px);
-  position: relative;
-  z-index:  1;
-  overflow: visible;           /* las partículas pueden salir del cuadro */
+  position: absolute;   /* sale del flujo flex, cubre todo el hero */
+  inset:    0;          /* top:0 right:0 bottom:0 left:0 */
+  z-index:  0;          /* detrás del texto */
+  pointer-events: none; /* el canvas no bloquea clicks en el texto */
 }
 
 #robot-canvas {
   width:   100% !important;
   height:  100% !important;
   display: block;
-  /* Escala el canvas un 20% más grande → los bordes sangran fuera del container
-     sin afectar la lógica interna del raycaster */
-  transform:        scale(1.20);
-  transform-origin: center center;
+}
+
+/* El contenido del hero va arriba de la galaxia */
+.hero-content {
+  position: relative;
+  z-index:  1;
 }
 
 @media (max-width: 900px) {
