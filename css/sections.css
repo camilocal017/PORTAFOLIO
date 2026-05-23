@@ -22,7 +22,7 @@
 #hero {
   min-height:       100vh;
   display:          flex;
-  align-items:      center;
+  align-items:      flex-start;       /* alinea desde arriba para poder posicionar galaxy */
   justify-content:  space-between;
   gap:              40px;
   padding:          0 var(--space-xl);

@@ -20,11 +20,10 @@
     // ── Escena ────────────────────────────────────
     const scene  = new THREE.Scene();
 
-    // Cámara ajustada para que la galaxia quede centrada en el canvas
+    // Cámara: mira hacia abajo para que la galaxia inclinada quede centrada en canvas
     const camera = new THREE.PerspectiveCamera(56, W / H, 0.1, 100);
-    camera.position.set(0, 2.0, 7.5);
-    camera.lookAt(0, -0.15, 0);   // lookAt un poco por debajo del centro
-                                   // compensa la inclinación visual de la galaxia
+    camera.position.set(0, 2.2, 7.5);
+    camera.lookAt(0, -0.55, 0);  // apuntar más abajo → galaxia sube en el canvas
 
     // ════════════════════════════════════════════
     //  GALAXIA — partículas en brazos espirales
@@ -230,10 +229,10 @@
 
       // Parallax suave de cámara
       camX += (mX * 0.45 - camX) * 0.05;
-      camY += (2.0 + mY * 0.35 - camY) * 0.05;
+      camY += (2.2 + mY * 0.35 - camY) * 0.05;
       camera.position.x = camX;
       camera.position.y = camY;
-      camera.lookAt(0, -0.15, 0);
+      camera.lookAt(0, -0.55, 0);
 
       renderer.render(scene, camera);
     }
