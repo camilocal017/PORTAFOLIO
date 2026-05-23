@@ -1,11 +1,13 @@
 /* ── Galaxia Three.js — contenedor hero ── */
 .hero-robot {
   flex-shrink: 0;
-  width:    clamp(280px, 35vw, 480px);
-  height:   clamp(320px, 60vh, 580px);
+  align-self:  center;          /* centra verticalmente dentro del flex del hero */
+  width:    clamp(280px, 33vw, 460px);
+  height:   clamp(300px, 55vh, 520px);
   position: relative;
   z-index:  1;
   overflow: visible;
+  cursor:   crosshair;          /* indica que el cursor interactúa */
 }
 
 #robot-canvas {
