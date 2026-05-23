@@ -149,8 +149,8 @@
     //  FÍSICA
     // ════════════════════════════════════════════
     const vel      = new Float32Array(COUNT * 3);
-    const CURSOR_R  = 1.60;
-    const CURSOR_R2 = CURSOR_R * CURSOR_R;
+    const CURSOR_R  = 0.75;
+    const CURSOR_R2 = CURSOR_R * CURSOR_R;  // se actualiza automático
     const PUSH      = 0.32;
     const SPRING    = 0.028;
     const DAMP      = 0.82;
