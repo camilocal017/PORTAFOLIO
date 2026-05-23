@@ -1,69 +1,65 @@
 /**
- * robot.js
- * Robot SVG que sigue el cursor con cabeza y cuerpo independientes.
- * Usa lerp (interpolación lineal) para movimiento suave sin saltos.
+ * robot.js — Humanoide que sigue el cursor
+ *
+ * Cabeza: rotateY() + rotateX() = giro 3D real (no inclinación 2D)
+ * Cuerpo: rotateY() sutil para acompañar
+ * Pupilas: translate() dentro del ojo
  */
 (function () {
-  const container  = document.getElementById('robot-container');
-  const robotRoot  = document.getElementById('robot-root');
-  const headGroup  = document.getElementById('robot-head-group');
-  const pupilL     = document.getElementById('pupil-left');
-  const pupilLi    = document.getElementById('pupil-left-inner');
-  const pupilR     = document.getElementById('pupil-right');
-  const pupilRi    = document.getElementById('pupil-right-inner');
+  const container = document.getElementById('robot-container');
+  const head      = document.getElementById('bot-head');
+  const body      = document.getElementById('bot-body');
+  const pupilL    = document.getElementById('pupil-l');
+  const pupilR    = document.getElementById('pupil-r');
 
-  if (!container || !robotRoot) return;
+  if (!container || !head) return;
 
-  // Posiciones de pupilas en reposo
-  const EYE_L = { x: 138, y: 100 };
-  const EYE_R = { x: 182, y: 100 };
-  const EYE_RANGE = 7; // píxeles máx de movimiento de pupila
+  // Máximos de rotación
+  const HEAD_Y  = 38;   // giro horizontal cabeza (deg)
+  const HEAD_X  = 20;   // inclinación vertical cabeza (deg)
+  const BODY_Y  = 10;   // giro horizontal cuerpo (deg)
+  const EYE_PX  = 5;    // movimiento pupila (px)
 
-  // Valores objetivo (actualizados por mousemove)
-  let tBody = 0, tHead = 0, tEyeX = 0, tEyeY = 0;
-  // Valores actuales suavizados (actualizados por lerp)
-  let cBody = 0, cHead = 0, cEyeX = 0, cEyeY = 0;
+  // Targets (actualizados por mousemove)
+  let tHY = 0, tHX = 0, tBY = 0, tEX = 0, tEY = 0;
+  // Actuales suavizados (lerp)
+  let cHY = 0, cHX = 0, cBY = 0, cEX = 0, cEY = 0;
 
-  function lerp(a, b, t) { return a + (b - a) * t; }
+  const lerp = (a, b, t) => a + (b - a) * t;
 
   document.addEventListener('mousemove', (e) => {
     const rect = container.getBoundingClientRect();
-    const cx   = rect.left + rect.width  / 2;
-    const cy   = rect.top  + rect.height / 2;
+    const cx = rect.left + rect.width  / 2;
+    const cy = rect.top  + rect.height / 2;
 
-    // Normalizar: -1 a 1 según posición en pantalla
-    const nx = (e.clientX - cx) / (window.innerWidth  / 2);
-    const ny = (e.clientY - cy) / (window.innerHeight / 2);
+    // Normalizar: -1 a 1
+    const nx =  (e.clientX - cx) / (window.innerWidth  / 2);
+    const ny = -(e.clientY - cy) / (window.innerHeight / 2); // invertir Y
 
-    tBody  = nx * 9;          // cuerpo: máx ±9°
-    tHead  = nx * 22;         // cabeza: máx ±22°
-    tEyeX  = nx * EYE_RANGE;  // ojo X: máx ±7px
-    tEyeY  = ny * (EYE_RANGE * 0.6); // ojo Y: máx ±4px
+    tHY = nx * HEAD_Y;
+    tHX = ny * HEAD_X;
+    tBY = nx * BODY_Y;
+    tEX = nx * EYE_PX;
+    tEY = -ny * EYE_PX * 0.6;
   });
 
   function tick() {
-    // Suavizar con lerp — valores más pequeños = más lento/suave
-    cBody  = lerp(cBody,  tBody,  0.05);
-    cHead  = lerp(cHead,  tHead,  0.09);
-    cEyeX  = lerp(cEyeX,  tEyeX,  0.12);
-    cEyeY  = lerp(cEyeY,  tEyeY,  0.12);
+    // Suavizar
+    cHY = lerp(cHY, tHY, 0.07);
+    cHX = lerp(cHX, tHX, 0.07);
+    cBY = lerp(cBY, tBY, 0.04);
+    cEX = lerp(cEX, tEX, 0.12);
+    cEY = lerp(cEY, tEY, 0.12);
 
-    // Aplicar rotación al cuerpo (desde los pies)
-    robotRoot.style.transform = `rotate(${cBody}deg)`;
+    // Cabeza: giro 3D real (rotateY = izq/der, rotateX = arriba/abajo)
+    head.style.transform = `rotateY(${cHY}deg) rotateX(${cHX}deg)`;
 
-    // Cabeza rota más — se resta la rotación del cuerpo para que sea relativa
-    headGroup.style.transform = `rotate(${cHead - cBody}deg)`;
+    // Cuerpo: giro suave acompañando
+    if (body) body.style.transform = `rotateY(${cBY}deg)`;
 
-    // Mover pupilas
-    pupilL.setAttribute('cx',  EYE_L.x + cEyeX);
-    pupilL.setAttribute('cy',  EYE_L.y + cEyeY);
-    pupilLi.setAttribute('cx', EYE_L.x + cEyeX);
-    pupilLi.setAttribute('cy', EYE_L.y + cEyeY);
-
-    pupilR.setAttribute('cx',  EYE_R.x + cEyeX);
-    pupilR.setAttribute('cy',  EYE_R.y + cEyeY);
-    pupilRi.setAttribute('cx', EYE_R.x + cEyeX);
-    pupilRi.setAttribute('cy', EYE_R.y + cEyeY);
+    // Pupilas: translate dentro del ojo
+    if (pupilL) pupilL.style.transform = `translate(${cEX}px, ${cEY}px)`;
+    if (pupilR) pupilR.style.transform = `translate(${cEX}px, ${cEY}px)`;
 
     requestAnimationFrame(tick);
   }
