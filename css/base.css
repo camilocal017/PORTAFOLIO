@@ -28,6 +28,33 @@ html {
   scroll-behavior: smooth; /* Scroll animado al hacer click en nav */
 }
 
+/* ── SCROLLBAR PERSONALIZADO ────────────────────────────────
+   Webkit (Chrome, Edge, Safari)
+──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background:    #0e0c0a;           /* Pista: casi negro                 */
+}
+
+::-webkit-scrollbar-thumb {
+  background:    var(--color-amber-dark);   /* Pulgar: ámbar oscuro      */
+  border-radius: 99px;
+  transition:    background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:    var(--color-amber);        /* Hover: ámbar brillante    */
+}
+
+/* Firefox */
+* {
+  scrollbar-width:  thin;
+  scrollbar-color:  var(--color-amber-dark) #0e0c0a;
+}
+
 /* ── BODY ───────────────────────────────────────────────────*/
 body {
   background-color: var(--color-bg);
