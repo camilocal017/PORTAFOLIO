@@ -590,6 +590,82 @@ Si buscas a alguien que entregue soluciones claras, bien estructuradas y listas 
         </div>
       </div>
 
+      <!-- PROYECTO 05 -->
+      <div class="proj-card reveal">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm">-- MySQL: análisis de ventas</span>
+<span class="ck">SELECT</span>
+  categoria,
+  <span class="ck">COUNT</span>(*) <span class="ck">AS</span> total_ventas,
+  <span class="ck">SUM</span>(precio) <span class="ck">AS</span> ingresos,
+  <span class="ck">AVG</span>(precio) <span class="ck">AS</span> ticket_prom
+<span class="ck">FROM</span> ventas
+<span class="ck">WHERE</span> fecha >= <span class="cs">'2024-01-01'</span>
+<span class="ck">GROUP BY</span> categoria
+<span class="ck">ORDER BY</span> ingresos <span class="ck">DESC</span>;</pre>
+          </div>
+          <span class="proj-badge badge-personal">Personal</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">07</div>
+          <div class="proj-title">Análisis de Ventas con SQL</div>
+          <div class="proj-desc">
+            Análisis exploratorio completo sobre dataset de ventas retail usando
+            MySQL. Consultas avanzadas, agrupaciones, métricas clave y
+            visualización final con Power BI.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">MySQL</span>
+            <span class="stag project">SQL</span>
+            <span class="stag project">Power BI</span>
+            <span class="stag project">Excel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROYECTO 06 -->
+      <div class="proj-card reveal d1">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm"># marketing/campaigns.py</span>
+<span class="ck">import</span> pandas <span class="ck">as</span> pd
+
+df = pd.read_csv(<span class="cs">'metricas.csv'</span>)
+
+<span class="cm"># KPIs de campaña</span>
+df[<span class="cs">'CTR'</span>] = (
+  df[<span class="cs">'clicks'</span>] / df[<span class="cs">'impresiones'</span>]
+) * <span class="cs">100</span>
+
+df[<span class="cs">'ROAS'</span>] = (
+  df[<span class="cs">'ingresos'</span>] / df[<span class="cs">'inversion'</span>]
+)
+
+top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pre>
+          </div>
+          <span class="proj-badge badge-freelance">Experiencia real</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">08</div>
+          <div class="proj-title">Análisis de Campañas Digitales</div>
+          <div class="proj-desc">
+            Análisis de métricas de marketing digital para club deportivo
+            "Hecho en Colombia". KPIs de campaña, análisis de mercado y
+            reportes de rendimiento con Python y Excel.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">Python</span>
+            <span class="stag project">Pandas</span>
+            <span class="stag project">Excel</span>
+            <span class="stag project">Marketing Digital</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- ══════════════════════════════════════════════════
        EXPERIENCE
