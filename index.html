@@ -409,6 +409,53 @@ Si buscas a alguien que entregue soluciones claras, bien estructuradas y listas 
         </div>
       </div>
 
+      <!-- PROYECTO EL RINCONCITO -->
+      <div class="proj-card reveal">
+        <div class="proj-card-top">
+          <div class="proj-mockup">
+            <pre class="proj-mockup-code"><span class="cm">// FireParticles.tsx — Canvas API</span>
+<span class="ck">const</span> spawn = () => particles.push({
+  x: Math.random() * W,
+  y: H,
+  vx: (Math.random()-<span class="cs">0.5</span>) * <span class="cs">2</span>,
+  vy: -Math.random() * <span class="cs">3</span> - <span class="cs">1</span>,
+  life: <span class="cs">1</span>,
+  size: Math.random() * <span class="cs">4</span> + <span class="cs">2</span>,
+  color: <span class="cs">`hsl(${20+~~(Math.random()*30)},
+    100%, ${40+~~(Math.random()*30)}%)`</span>
+})
+<span class="ck">const</span> frame = () => {
+  ctx.clearRect(<span class="cs">0</span>,<span class="cs">0</span>,W,H)
+  particles.forEach(p => { p.y+=p.vy; p.life-=<span class="cs">0.02</span> })
+}</pre>
+          </div>
+          <div class="proj-overlay">
+            <a href="https://el-rinconcito-six.vercel.app" class="proj-overlay-btn" target="_blank" rel="noopener">Ver Demo →</a>
+          </div>
+          <span class="proj-badge badge-freelance">Nuevo</span>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-num">05</div>
+          <div class="proj-title">El Rinconcito — Landing Page de Restaurante</div>
+          <div class="proj-desc">
+            Landing page premium para restaurante con sistema de partículas de fuego
+            hecho desde cero con Canvas API, animaciones fluidas con Framer Motion,
+            carrusel de 36 platos con auto-avance y galería de menú con filtros.
+            SSR, imágenes lazy-load y score 95+ en Lighthouse.
+          </div>
+          <div class="proj-stack">
+            <span class="stag project">Next.js 14</span>
+            <span class="stag project">TypeScript</span>
+            <span class="stag project">Framer Motion</span>
+            <span class="stag project">Tailwind CSS</span>
+            <span class="stag project">Canvas API</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://el-rinconcito-six.vercel.app" class="proj-link secondary" target="_blank" rel="noopener">Demo →</a>
+          </div>
+        </div>
+      </div>
+
       <!-- PROYECTO 03 -->
       <div class="proj-card reveal">
         <div class="proj-card-top">
@@ -530,39 +577,6 @@ reporte.to_excel(<span class="cs">'reporte.xlsx'</span>)</pre>
         </div>
       </div>
 
-      <!-- PROYECTO 05 -->
-      <div class="proj-card reveal">
-        <div class="proj-card-top">
-          <div class="proj-mockup">
-            <pre class="proj-mockup-code"><span class="cm">-- MySQL: análisis de ventas</span>
-<span class="ck">SELECT</span>
-  categoria,
-  <span class="ck">COUNT</span>(*) <span class="ck">AS</span> total_ventas,
-  <span class="ck">SUM</span>(precio) <span class="ck">AS</span> ingresos,
-  <span class="ck">AVG</span>(precio) <span class="ck">AS</span> ticket_prom
-<span class="ck">FROM</span> ventas
-<span class="ck">WHERE</span> fecha >= <span class="cs">'2024-01-01'</span>
-<span class="ck">GROUP BY</span> categoria
-<span class="ck">ORDER BY</span> ingresos <span class="ck">DESC</span>;</pre>
-          </div>
-          <span class="proj-badge badge-personal">Personal</span>
-        </div>
-        <div class="proj-card-body">
-          <div class="proj-num">07</div>
-          <div class="proj-title">Análisis de Ventas con SQL</div>
-          <div class="proj-desc">
-            Análisis exploratorio completo sobre dataset de ventas retail usando
-            MySQL. Consultas avanzadas, agrupaciones, métricas clave y
-            visualización final con Power BI.
-          </div>
-          <div class="proj-stack">
-            <span class="stag project">MySQL</span>
-            <span class="stag project">SQL</span>
-            <span class="stag project">Power BI</span>
-            <span class="stag project">Excel</span>
-          </div>
-        </div>
-      </div>
 
       <!-- PROYECTO TIENDA DE BARRIO -->
       <div class="proj-card reveal d2">
@@ -611,48 +625,6 @@ reporte.to_excel(<span class="cs">'reporte.xlsx'</span>)</pre>
           </div>
         </div>
       </div>
-
-      <!-- PROYECTO 06 -->
-      <div class="proj-card reveal d1">
-        <div class="proj-card-top">
-          <div class="proj-mockup">
-            <pre class="proj-mockup-code"><span class="cm"># marketing/campaigns.py</span>
-<span class="ck">import</span> pandas <span class="ck">as</span> pd
-
-df = pd.read_csv(<span class="cs">'metricas.csv'</span>)
-
-<span class="cm"># KPIs de campaña</span>
-df[<span class="cs">'CTR'</span>] = (
-  df[<span class="cs">'clicks'</span>] / df[<span class="cs">'impresiones'</span>]
-) * <span class="cs">100</span>
-
-df[<span class="cs">'ROAS'</span>] = (
-  df[<span class="cs">'ingresos'</span>] / df[<span class="cs">'inversion'</span>]
-)
-
-top = df.nlargest(<span class="cs">5</span>, <span class="cs">'ROAS'</span>)</pre>
-          </div>
-          <span class="proj-badge badge-freelance">Experiencia real</span>
-        </div>
-        <div class="proj-card-body">
-          <div class="proj-num">08</div>
-          <div class="proj-title">Análisis de Campañas Digitales</div>
-          <div class="proj-desc">
-            Análisis de métricas de marketing digital para club deportivo
-            "Hecho en Colombia". KPIs de campaña, análisis de mercado y
-            reportes de rendimiento con Python y Excel.
-          </div>
-          <div class="proj-stack">
-            <span class="stag project">Python</span>
-            <span class="stag project">Pandas</span>
-            <span class="stag project">Excel</span>
-            <span class="stag project">Marketing Digital</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 
 
   <!-- ══════════════════════════════════════════════════
