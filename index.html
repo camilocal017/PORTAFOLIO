@@ -435,7 +435,7 @@ Si buscas a alguien que entregue soluciones claras, bien estructuradas y listas 
           <span class="proj-badge badge-freelance">Nuevo</span>
         </div>
         <div class="proj-card-body">
-          <div class="proj-num">05</div>
+          <div class="proj-num">03</div>
           <div class="proj-title">El Rinconcito — Landing Page de Restaurante</div>
           <div class="proj-desc">
             Landing page premium para restaurante con sistema de partículas de fuego
@@ -452,42 +452,6 @@ Si buscas a alguien que entregue soluciones claras, bien estructuradas y listas 
           </div>
           <div class="proj-links">
             <a href="https://el-rinconcito-six.vercel.app" class="proj-link secondary" target="_blank" rel="noopener">Demo →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROYECTO 03 -->
-      <div class="proj-card reveal">
-        <div class="proj-card-top">
-          <div class="proj-mockup">
-            <pre class="proj-mockup-code"><span class="cm"># liga_ciclismo/analysis.py</span>
-<span class="ck">import</span> pandas <span class="ck">as</span> pd
-
-df = pd.read_csv(<span class="cs">'deportistas.csv'</span>)
-df = df.dropna(subset=[<span class="cs">'nombre'</span>])
-df[<span class="cs">'activo'</span>] = df[<span class="cs">'estado'</span>] == <span class="cs">'activo'</span>
-
-reporte = df.groupby(<span class="cs">'categoria'</span>).agg(
-  total=(<span class="cs">'id'</span>, <span class="cs">'count'</span>),
-  activos=(<span class="cs">'activo'</span>, <span class="cs">'sum'</span>)
-)
-reporte.to_excel(<span class="cs">'reporte.xlsx'</span>)</pre>
-          </div>
-          <span class="proj-badge badge-freelance">Experiencia real</span>
-        </div>
-        <div class="proj-card-body">
-          <div class="proj-num">03</div>
-          <div class="proj-title">Liga de Ciclismo de Bogotá</div>
-          <div class="proj-desc">
-            Gestión, limpieza y análisis de bases de datos de deportistas.
-            Generación de reportes periódicos sobre rendimiento y participación.
-            Visualización de datos para apoyo en decisiones administrativas y deportivas.
-          </div>
-          <div class="proj-stack">
-            <span class="stag project">Python</span>
-            <span class="stag project">Pandas</span>
-            <span class="stag project">Excel</span>
-            <span class="stag project">Matplotlib</span>
           </div>
         </div>
       </div>
